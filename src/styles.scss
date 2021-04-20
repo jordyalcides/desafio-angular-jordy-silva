@@ -1,1 +1,91 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,400;0,700;1,400&display=swap');
+:root {
+    --background: #151515;
+    --header: #202020;
+    --border: #c3c3c3;
+    --input-background: #f2f2f2;
+    --text: #fff;
+    --text-gray: #999;
+    --text-alt: #202020;
+    --white: #fff;
+    --black: #000;
+    --red: #e62429;
+}
+
+html {
+    @media screen and (max-width: 1080px) {
+        font-size: 93.75%;
+    }
+    @media screen and (max-width: 768px) {
+        font-size: 87.5%;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font: normal 400 16px 'Roboto';
+    background-color: var(--background);
+    color: var(--text);
+}
+
+input,
+textarea {
+    font-family: 'Roboto Condensed';
+    color: var(--text);
+    outline: none;
+}
+
+input {
+    background-color: var(--input-background);
+}
+
+button {
+    font: bold 700 16px 'Roboto';
+    background-color: var(--red);
+    color: var(--text);
+    outline: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:visited {
+    color: none;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    transition: all linear 0.2s;
+    &:hover {
+        opacity: 0.9;
+    }
+    &:active {
+        opacity: 1;
+    }
+}
+
+h1,
+h2 {
+    font-family: 'Roboto Condensed';
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+[disabled] {
+    cursor: not-allowed;
+}
+
+.container {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
