@@ -7,15 +7,10 @@
         </h1>
 
         <nav class="headerButtons">
-            <a href="">
+            <a *ngFor="let button of buttons" [href]="button.url">
                 <button type="button">
-					Characters
-				</button>
-            </a>
-            <a href="">
-                <button type="button">
-					HQs
-				</button>
+                    {{button.name}}
+                </button>
             </a>
         </nav>
     </header>

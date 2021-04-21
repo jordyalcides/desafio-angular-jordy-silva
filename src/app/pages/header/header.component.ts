@@ -8,4 +8,14 @@ import { Component } from "@angular/core";
 
 export class HeaderComponent {
 	homeimg = 'assets/svg/marvel.svg'
+	buttons = [
+		{
+			name: 'Characters',
+			url: '#'
+		},
+		{
+			name: 'HQs',
+			url: '#'
+		}
+	]
 }

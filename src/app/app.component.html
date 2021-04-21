@@ -1,1 +1,3 @@
 <marvel-header></marvel-header>
+<marvel-character *ngFor="let character of characters" [name]="character.name!" img={{character.thumbnail?.path!}}.{{character.thumbnail?.extension!}}>
+</marvel-character>
