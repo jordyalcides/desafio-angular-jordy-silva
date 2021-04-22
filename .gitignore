@@ -3,6 +3,9 @@
 # project structure
 Estrutura do projeto
 
+#API Keys
+.env
+
 # compiled output
 /dist
 /tmp
