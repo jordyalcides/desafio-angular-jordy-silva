@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { CharacterService } from './characters/character/character.service';
 
 @Component({
@@ -18,10 +17,5 @@ export class AppComponent {
       .subscribe(response => {
         this.characters = response.data.results
       })
-    // .subscribe(response => {
-    //   console.log(response)
-
-    //   // this.heroes = response
-    // })
   }
 }
