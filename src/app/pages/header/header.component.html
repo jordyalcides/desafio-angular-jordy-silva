@@ -1,17 +1,15 @@
-<div class="container">
-    <header class="headerContainer">
-        <h1>
-            <a href="">
-                <img [src]="homeimg" alt="">
-            </a>
-        </h1>
+<header class="headerContainer">
+    <h1>
+        <a href="">
+            <img [src]="homeimg" alt="">
+        </a>
+    </h1>
 
-        <nav class="headerButtons">
-            <a *ngFor="let button of buttons" [href]="button.url">
-                <button type="button">
-                    {{button.name}}
-                </button>
-            </a>
-        </nav>
-    </header>
-</div>
+    <nav>
+        <a *ngFor="let button of buttons" [href]="button.url" routerLinkActive="active">
+            <button type="button">
+                {{button.name}}
+            </button>
+        </a>
+    </nav>
+</header>

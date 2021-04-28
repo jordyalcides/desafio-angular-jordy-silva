@@ -9,6 +9,7 @@ export class CharacterComponent implements OnInit {
 
   @Input() name: string = ''
   @Input() img: string = ''
+  @Input() url: string = ''
 
   constructor() { }
 

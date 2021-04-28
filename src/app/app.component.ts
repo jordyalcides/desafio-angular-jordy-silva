@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { CharacterService } from './characters/character/character.service';
 
 @Component({
   selector: 'app-root',
@@ -7,15 +6,17 @@ import { CharacterService } from './characters/character/character.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Marvel Heroes'
-  characters: Character[] = []
+  headerButtons = [
+    {
+      name: 'Characters',
+      url: '/characters'
+    },
+    {
+      name: 'Comics',
+      url: '#'
+    }
+  ]
 
-  constructor(CharacterService: CharacterService) {
-
-    CharacterService
-      .fetchCharacters()
-      .subscribe(response => {
-        this.characters = response.data.results
-      })
+  constructor() {
   }
 }

@@ -1,0 +1,4 @@
+<div class="charactersContainer">
+    <marvel-character *ngFor="let character of characters" [name]="character.name!" img={{character.thumbnail?.path!}}.{{character.thumbnail?.extension!}} url="{{'characters/'+character.id}}">
+    </marvel-character>
+</div>

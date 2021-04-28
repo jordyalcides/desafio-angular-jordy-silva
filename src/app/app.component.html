@@ -1,5 +1,2 @@
-<marvel-header></marvel-header>
-<div class="contentContainer">
-    <marvel-character *ngFor="let character of characters" [name]="character.name!" img={{character.thumbnail?.path!}}.{{character.thumbnail?.extension!}}>
-    </marvel-character>
-</div>
+<marvel-header [buttons]="headerButtons"></marvel-header>
+<router-outlet></router-outlet>

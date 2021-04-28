@@ -1,4 +1,9 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
+
+interface headerButton {
+	name: string,
+	url: string
+}
 
 @Component({
 	selector: 'marvel-header',
@@ -8,14 +13,5 @@ import { Component } from "@angular/core";
 
 export class HeaderComponent {
 	homeimg = 'assets/svg/marvel.svg'
-	buttons = [
-		{
-			name: 'Characters',
-			url: '#'
-		},
-		{
-			name: 'HQs',
-			url: '#'
-		}
-	]
+	@Input() buttons: Array<headerButton> = []
 }
