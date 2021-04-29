@@ -26,12 +26,15 @@ interface Character {
 	thumbnail?: Image
 }
 
-type Url = {
-	type?: string,
-	url?: string
+interface CharacterList {
+	available?: number,
+	returned?: number,
+	collectionURI?: string,
+	items?: Array<CharacterSummary>
 }
 
-type Image = {
-	path?: string,
-	extension?: string
+interface CharacterSummary {
+	resourceURI?: string,
+	name?: string,
+	role?: string
 }

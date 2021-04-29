@@ -12,11 +12,10 @@ export class CharacterDetailComponent implements OnInit {
   character: Character = {}
 
   constructor(
-    private _Activatedroute: ActivatedRoute,
+    private Activatedroute: ActivatedRoute,
     private CharacterService: CharacterService
   ) {
-
-    const id = this._Activatedroute.snapshot.paramMap.get("id")!
+    const id = this.Activatedroute.snapshot.paramMap.get("id")!
 
     CharacterService
       .fetchCharacter(id)

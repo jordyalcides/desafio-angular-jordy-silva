@@ -14,7 +14,12 @@ export class CharactersListComponent implements OnInit {
     CharacterService
       .fetchCharacters()
       .subscribe(response => {
-        this.characters = response.data.results
+        const result = response.data.results
+        this.characters = result.filter(character => {
+          return character.thumbnail?.path === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available'
+            ? false
+            : true
+        })
       })
   }
 

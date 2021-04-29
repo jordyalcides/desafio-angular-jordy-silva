@@ -13,7 +13,7 @@ export class AppComponent {
     },
     {
       name: 'Comics',
-      url: '#'
+      url: '/comics'
     }
   ]
 
