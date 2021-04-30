@@ -1,9 +1,11 @@
 <div class="comicContainer">
-    <img src={{comic.thumbnail?.path!}}.{{comic.thumbnail?.extension!}} [alt]="comic.title">
+    <div class="imgContainer">
+        <img src={{comic.thumbnail?.path!}}.{{comic.thumbnail?.extension!}} [alt]="comic.title">
+        <button type=button>Buy it now for ${{ price }}</button>
+    </div>
     <div class="detailsContainer">
         <h1> {{ comic.title }} </h1>
         <p> Pages: {{ comic.pageCount }} </p>
         <p> {{ comic.description }} </p>
-        <button type=button>Buy it now for ${{ price }}</button>
     </div>
 </div>

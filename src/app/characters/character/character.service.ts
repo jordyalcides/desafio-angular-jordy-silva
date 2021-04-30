@@ -15,7 +15,7 @@ export class CharacterService {
     "ts": "1",
     "apikey": this.publicApiKey,
     "hash": this.hash,
-    "limit": '100'
+    "limit": '20'
   }
 
   constructor(private http: HttpClient) { }
@@ -37,6 +37,19 @@ export class CharacterService {
     }
 
     return this.http.get<CharacterDataWrapper>(this.urlAPI + `/${id}`, {
+      params
+    })
+  }
+
+  fetchCharacterComics(id: string) {
+    const params = {
+      ...this.requiredParams,
+      'limit': '100',
+      'formatType': 'comic',
+      'orderBy': '-onsaleDate'
+    }
+
+    return this.http.get<ComicDataWrapper>(this.urlAPI + `/${id}/comics`, {
       params
     })
   }

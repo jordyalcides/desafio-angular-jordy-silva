@@ -13,7 +13,7 @@ export class ComicService {
     "ts": "1",
     "apikey": this.publicApiKey,
     "hash": this.hash,
-    "limit": '100'
+    "limit": '20'
   }
 
   constructor(private http: HttpClient) { }
