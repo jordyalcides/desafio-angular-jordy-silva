@@ -1,0 +1,46 @@
+.comicsContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-gap: 1.25rem;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+@media screen and (min-width: 425px) {
+    .comicsContainer {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width: 720px) {
+    .comicsContainer {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (min-width: 860px) {
+    .comicsContainer {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media screen and (min-width: 1080px) {
+    .comicsContainer {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .comicsContainer {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+@media screen and (min-width: 2560px) {
+    .comicsContainer {
+        grid-template-columns: repeat(8, 1fr);
+    }
+}

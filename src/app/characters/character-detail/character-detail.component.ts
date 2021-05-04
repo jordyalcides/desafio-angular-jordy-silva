@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CharacterService } from '../../characters/character/character.service'
+import { CharacterService } from '../shared/character.service';
 
 @Component({
   selector: 'marvel-character-detail',

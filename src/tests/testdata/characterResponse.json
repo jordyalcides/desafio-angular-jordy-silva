@@ -1,0 +1,19 @@
+{
+    "code": 200,
+    "status": "Ok",
+    "data": {
+        "limit": 1,
+        "total": 1,
+        "count": 1,
+        "results": [{
+            "id": 1009144,
+            "name": "A.I.M.",
+            "description": "AIM is a terrorist organization bent on destroying the world.",
+            "modified": "2013-10-17T14:41:30-0400",
+            "thumbnail": {
+                "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/20/52602f21f29ec",
+                "extension": "jpg"
+            }
+        }]
+    }
+}

@@ -1,0 +1,610 @@
+{
+    "code": 200,
+    "status": "Ok",
+    "copyright": "© 2021 MARVEL",
+    "attributionText": "Data provided by Marvel. © 2021 MARVEL",
+    "attributionHTML": "<a href=\"http://marvel.com\">Data provided by Marvel. © 2021 MARVEL</a>",
+    "etag": "99c0a11dc3726cde00661f0bc399e6e86dd4b0a6",
+    "data": {
+        "offset": 0,
+        "limit": 100,
+        "total": 1932,
+        "count": 100,
+        "results": [{
+                "id": 71059,
+                "digitalId": 0,
+                "title": "AVENGERS BY JASON AARON VOL. 3: WAR OF THE VAMPIRES TPB (Trade Paperback)",
+                "issueNumber": 3,
+                "variantDescription": "",
+                "description": "Collects Avengers (2018) #13-17. Kingdom of vampires! Transylvania burns as a battle of the bloodsuckers throws the world into chaos! But the mysterious Shadow Colonel and his new Legion of the Unliving have one question on their murderous minds: Where is Dracula? And if the Avengers find him first, will he be friend or foe? Earth’s Mightiest Heroes will have to call in an expert — welcome to the Avengers, Blade! But is Ghost Rider about to become a deadly enemy? When the dust settles and a new vampire order is established, who will be the Lord of the Damned? Plus: The Iron Fist of 1,000,000 BC stars in another journey into prehistory! Get to know the primordial woman who was the first to harness the power of the heart of the dragon Shou-Lao!",
+                "modified": "2019-05-30T16:00:12-0400",
+                "isbn": "978-1-302-91461-5",
+                "upc": "",
+                "diamondCode": "MAR191016",
+                "ean": "9781302 914615 51799",
+                "issn": "0274-5240",
+                "format": "Trade Paperback",
+                "pageCount": 112,
+                "textObjects": [{
+                    "type": "issue_solicit_text",
+                    "language": "en-us",
+                    "text": "Collects Avengers (2018) #13-17. Kingdom of vampires! Transylvania burns as a battle of the bloodsuckers throws the world into chaos! But the mysterious Shadow Colonel and his new Legion of the Unliving have one question on their murderous minds: Where is Dracula? And if the Avengers find him first, will he be friend or foe? Earth’s Mightiest Heroes will have to call in an expert — welcome to the Avengers, Blade! But is Ghost Rider about to become a deadly enemy? When the dust settles and a new vampire order is established, who will be the Lord of the Damned? Plus: The Iron Fist of 1,000,000 BC stars in another journey into prehistory! Get to know the primordial woman who was the first to harness the power of the heart of the dragon Shou-Lao!"
+                }],
+                "resourceURI": "http://gateway.marvel.com/v1/public/comics/71059",
+                "urls": [{
+                        "type": "detail",
+                        "url": "http://marvel.com/comics/collection/71059/avengers_by_jason_aaron_vol_3_war_of_the_vampires_tpb_trade_paperback?utm_campaign=apiRef&utm_source=0c80d032665836b30bb37f8c815449a7"
+                    },
+                    {
+                        "type": "purchase",
+                        "url": "http://comicstore.marvel.com/AVENGERS-BY-JASON-AARON-VOL-3-WAR-OF-THE-VAMPIRES-TPB-3/digital-comic/51704?utm_campaign=apiRef&utm_source=0c80d032665836b30bb37f8c815449a7"
+                    }
+                ],
+                "series": {
+                    "resourceURI": "http://gateway.marvel.com/v1/public/series/25953",
+                    "name": "AVENGERS BY JASON AARON VOL. 3: WAR OF THE VAMPIRES TPB (2019)"
+                },
+                "variants": [],
+                "collections": [],
+                "collectedIssues": [],
+                "dates": [{
+                        "type": "onsaleDate",
+                        "date": "2021-06-16T00:00:00-0400"
+                    },
+                    {
+                        "type": "focDate",
+                        "date": "2019-04-15T00:00:00-0400"
+                    }
+                ],
+                "prices": [{
+                    "type": "printPrice",
+                    "price": 17.99
+                }],
+                "thumbnail": {
+                    "path": "http://i.annihil.us/u/prod/marvel/i/mg/4/a0/5ceeadf2ea01c",
+                    "extension": "jpg"
+                },
+                "images": [{
+                    "path": "http://i.annihil.us/u/prod/marvel/i/mg/4/a0/5ceeadf2ea01c",
+                    "extension": "jpg"
+                }],
+                "creators": {
+                    "available": 8,
+                    "collectionURI": "http://gateway.marvel.com/v1/public/comics/71059/creators",
+                    "items": [{
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/11463",
+                            "name": "Jason Aaron",
+                            "role": "writer"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/13162",
+                            "name": "Erick Arciniega",
+                            "role": "colorist"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/13021",
+                            "name": "David Curiel",
+                            "role": "colorist"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/360",
+                            "name": "Justin Ponsor",
+                            "role": "colorist"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/11610",
+                            "name": "David Marquez",
+                            "role": "inker"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/12462",
+                            "name": "Andrea Sorrentino",
+                            "role": "inker"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/12980",
+                            "name": "Vc Cory Petit",
+                            "role": "letterer"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/4430",
+                            "name": "Jeff Youngquist",
+                            "role": "editor"
+                        }
+                    ],
+                    "returned": 8
+                },
+                "characters": {
+                    "available": 1,
+                    "collectionURI": "http://gateway.marvel.com/v1/public/comics/71059/characters",
+                    "items": [{
+                        "resourceURI": "http://gateway.marvel.com/v1/public/characters/1009165",
+                        "name": "Avengers"
+                    }],
+                    "returned": 1
+                },
+                "stories": {
+                    "available": 2,
+                    "collectionURI": "http://gateway.marvel.com/v1/public/comics/71059/stories",
+                    "items": [{
+                            "resourceURI": "http://gateway.marvel.com/v1/public/stories/158093",
+                            "name": "cover from AVENGERS BY JASON AARON VOL. 3 TPB (2019) #3",
+                            "type": "cover"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/stories/158094",
+                            "name": "story from AVENGERS BY JASON AARON VOL. 3 TPB (2019) #3",
+                            "type": "interiorStory"
+                        }
+                    ],
+                    "returned": 2
+                },
+                "events": {
+                    "available": 0,
+                    "collectionURI": "http://gateway.marvel.com/v1/public/comics/71059/events",
+                    "items": [],
+                    "returned": 0
+                }
+            },
+            {
+                "id": 67745,
+                "digitalId": 0,
+                "title": "Avengers By Jason Aaron Vol. 1: The Final Host  (Trade Paperback)",
+                "issueNumber": 1,
+                "variantDescription": "",
+                "description": null,
+                "modified": "2019-06-07T09:55:23-0400",
+                "isbn": "978-1-302-91187-4",
+                "upc": "",
+                "diamondCode": "JUL181176",
+                "ean": "9781302 911874 51799",
+                "issn": "0274-5240",
+                "format": "Trade Paperback",
+                "pageCount": 160,
+                "textObjects": [],
+                "resourceURI": "http://gateway.marvel.com/v1/public/comics/67745",
+                "urls": [{
+                        "type": "detail",
+                        "url": "http://marvel.com/comics/collection/67745/avengers_by_jason_aaron_vol_1_the_final_host_trade_paperback?utm_campaign=apiRef&utm_source=0c80d032665836b30bb37f8c815449a7"
+                    },
+                    {
+                        "type": "purchase",
+                        "url": "http://comicstore.marvel.com/Avengers-By-Jason-Aaron-Vol-1-The-Final-Host-1/digital-comic/49474?utm_campaign=apiRef&utm_source=0c80d032665836b30bb37f8c815449a7"
+                    }
+                ],
+                "series": {
+                    "resourceURI": "http://gateway.marvel.com/v1/public/series/24429",
+                    "name": "Avengers By Jason Aaron Vol. 1: The Final Host  (2018)"
+                },
+                "variants": [],
+                "collections": [],
+                "collectedIssues": [],
+                "dates": [{
+                        "type": "onsaleDate",
+                        "date": "2021-05-12T00:00:00-0400"
+                    },
+                    {
+                        "type": "focDate",
+                        "date": "2018-08-13T00:00:00-0400"
+                    }
+                ],
+                "prices": [{
+                    "type": "printPrice",
+                    "price": 17.99
+                }],
+                "thumbnail": {
+                    "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/b0/5cf826b4f2da9",
+                    "extension": "jpg"
+                },
+                "images": [{
+                        "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/b0/5cf826b4f2da9",
+                        "extension": "jpg"
+                    },
+                    {
+                        "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/a0/5cc8bb7019818",
+                        "extension": "jpg"
+                    }
+                ],
+                "creators": {
+                    "available": 13,
+                    "collectionURI": "http://gateway.marvel.com/v1/public/comics/67745/creators",
+                    "items": [{
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/11463",
+                            "name": "Jason Aaron",
+                            "role": "writer"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/13021",
+                            "name": "David Curiel",
+                            "role": "colorist"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/360",
+                            "name": "Justin Ponsor",
+                            "role": "colorist"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/13174",
+                            "name": "Elisabetta D'AMICO",
+                            "role": "inker"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/616",
+                            "name": "Jay Leisten",
+                            "role": "inker"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/454",
+                            "name": "Mark Morales",
+                            "role": "inker"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/9408",
+                            "name": "Sara Pichelli",
+                            "role": "inker"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/3885",
+                            "name": "Karl Story",
+                            "role": "inker"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/413",
+                            "name": "Juan Vlasco",
+                            "role": "inker"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/649",
+                            "name": "Ed Mcguinness",
+                            "role": "penciler"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/208",
+                            "name": "Paco Medina",
+                            "role": "penciler"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/12980",
+                            "name": "Vc Cory Petit",
+                            "role": "letterer"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/4430",
+                            "name": "Jeff Youngquist",
+                            "role": "editor"
+                        }
+                    ],
+                    "returned": 13
+                },
+                "characters": {
+                    "available": 1,
+                    "collectionURI": "http://gateway.marvel.com/v1/public/comics/67745/characters",
+                    "items": [{
+                        "resourceURI": "http://gateway.marvel.com/v1/public/characters/1009165",
+                        "name": "Avengers"
+                    }],
+                    "returned": 1
+                },
+                "stories": {
+                    "available": 2,
+                    "collectionURI": "http://gateway.marvel.com/v1/public/comics/67745/stories",
+                    "items": [{
+                            "resourceURI": "http://gateway.marvel.com/v1/public/stories/146874",
+                            "name": "cover from AVENGERS VOL. 1 TPB (2018) #1",
+                            "type": "cover"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/stories/146875",
+                            "name": "story from AVENGERS VOL. 1 TPB (2018) #1",
+                            "type": "interiorStory"
+                        }
+                    ],
+                    "returned": 2
+                },
+                "events": {
+                    "available": 0,
+                    "collectionURI": "http://gateway.marvel.com/v1/public/comics/67745/events",
+                    "items": [],
+                    "returned": 0
+                }
+            },
+            {
+                "id": 92793,
+                "digitalId": 0,
+                "title": "Heroes Reborn (2021) #1",
+                "issueNumber": 1,
+                "variantDescription": "",
+                "description": null,
+                "modified": "2021-01-22T09:03:39-0500",
+                "isbn": "",
+                "upc": "75960620075700111",
+                "diamondCode": "MAR210497",
+                "ean": "",
+                "issn": "",
+                "format": "Comic",
+                "pageCount": 56,
+                "textObjects": [],
+                "resourceURI": "http://gateway.marvel.com/v1/public/comics/92793",
+                "urls": [{
+                        "type": "detail",
+                        "url": "http://marvel.com/comics/issue/92793/heroes_reborn_2021_1?utm_campaign=apiRef&utm_source=0c80d032665836b30bb37f8c815449a7"
+                    },
+                    {
+                        "type": "purchase",
+                        "url": "http://comicstore.marvel.com/Heroes-Reborn-1/digital-comic/56797?utm_campaign=apiRef&utm_source=0c80d032665836b30bb37f8c815449a7"
+                    }
+                ],
+                "series": {
+                    "resourceURI": "http://gateway.marvel.com/v1/public/series/31815",
+                    "name": "Heroes Reborn (2021 - Present)"
+                },
+                "variants": [],
+                "collections": [],
+                "collectedIssues": [],
+                "dates": [{
+                        "type": "onsaleDate",
+                        "date": "2021-05-05T00:00:00-0400"
+                    },
+                    {
+                        "type": "focDate",
+                        "date": "2021-04-12T00:00:00-0400"
+                    }
+                ],
+                "prices": [{
+                    "type": "printPrice",
+                    "price": 5.99
+                }],
+                "thumbnail": {
+                    "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/d0/608990caed681",
+                    "extension": "jpg"
+                },
+                "images": [{
+                    "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/d0/608990caed681",
+                    "extension": "jpg"
+                }],
+                "creators": {
+                    "available": 10,
+                    "collectionURI": "http://gateway.marvel.com/v1/public/comics/92793/creators",
+                    "items": [{
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/11463",
+                            "name": "Jason Aaron",
+                            "role": "writer"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/2133",
+                            "name": "Tom Brevoort",
+                            "role": "editor"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/13247",
+                            "name": "Rafael Fonteriz",
+                            "role": "inker (cover)"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/11579",
+                            "name": "Sunny Gho",
+                            "role": "colorist (cover)"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/1405",
+                            "name": "Matt Milla",
+                            "role": "colorist (cover)"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/649",
+                            "name": "Ed Mcguinness",
+                            "role": "penciler"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/454",
+                            "name": "Mark Morales",
+                            "role": "inker"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/12980",
+                            "name": "Vc Cory Petit",
+                            "role": "letterer"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/10279",
+                            "name": "Matthew Wilson",
+                            "role": "colorist"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/758",
+                            "name": "Leinil Francis Yu",
+                            "role": "penciler (cover)"
+                        }
+                    ],
+                    "returned": 10
+                },
+                "characters": {
+                    "available": 2,
+                    "collectionURI": "http://gateway.marvel.com/v1/public/comics/92793/characters",
+                    "items": [{
+                            "resourceURI": "http://gateway.marvel.com/v1/public/characters/1009165",
+                            "name": "Avengers"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/characters/1009191",
+                            "name": "Blade"
+                        }
+                    ],
+                    "returned": 2
+                },
+                "stories": {
+                    "available": 2,
+                    "collectionURI": "http://gateway.marvel.com/v1/public/comics/92793/stories",
+                    "items": [{
+                            "resourceURI": "http://gateway.marvel.com/v1/public/stories/206685",
+                            "name": "cover from Reborn Alpha (2021) #1",
+                            "type": "cover"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/stories/206686",
+                            "name": "story from Reborn Alpha (2021) #1",
+                            "type": "interiorStory"
+                        }
+                    ],
+                    "returned": 2
+                },
+                "events": {
+                    "available": 0,
+                    "collectionURI": "http://gateway.marvel.com/v1/public/comics/92793/events",
+                    "items": [],
+                    "returned": 0
+                }
+            },
+            {
+                "id": 84363,
+                "digitalId": 0,
+                "title": "Avengers (2018) #45",
+                "issueNumber": 45,
+                "variantDescription": "",
+                "description": null,
+                "modified": "2020-11-26T09:04:10-0500",
+                "isbn": "",
+                "upc": "75960608857704511",
+                "diamondCode": "FEB210490",
+                "ean": "",
+                "issn": "2644-1616",
+                "format": "Comic",
+                "pageCount": 32,
+                "textObjects": [],
+                "resourceURI": "http://gateway.marvel.com/v1/public/comics/84363",
+                "urls": [{
+                        "type": "detail",
+                        "url": "http://marvel.com/comics/issue/84363/avengers_2018_45?utm_campaign=apiRef&utm_source=0c80d032665836b30bb37f8c815449a7"
+                    },
+                    {
+                        "type": "purchase",
+                        "url": "http://comicstore.marvel.com/Avengers-45/digital-comic/56483?utm_campaign=apiRef&utm_source=0c80d032665836b30bb37f8c815449a7"
+                    }
+                ],
+                "series": {
+                    "resourceURI": "http://gateway.marvel.com/v1/public/series/24229",
+                    "name": "Avengers (2018 - Present)"
+                },
+                "variants": [{
+                    "resourceURI": "http://gateway.marvel.com/v1/public/comics/93978",
+                    "name": "Avengers (2018) #45 (Variant)"
+                }],
+                "collections": [],
+                "collectedIssues": [],
+                "dates": [{
+                        "type": "onsaleDate",
+                        "date": "2021-04-21T00:00:00-0400"
+                    },
+                    {
+                        "type": "focDate",
+                        "date": "2021-03-29T00:00:00-0400"
+                    }
+                ],
+                "prices": [{
+                    "type": "printPrice",
+                    "price": 3.99
+                }],
+                "thumbnail": {
+                    "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/b0/606f61e695a2e",
+                    "extension": "jpg"
+                },
+                "images": [{
+                    "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/b0/606f61e695a2e",
+                    "extension": "jpg"
+                }],
+                "creators": {
+                    "available": 10,
+                    "collectionURI": "http://gateway.marvel.com/v1/public/comics/84363/creators",
+                    "items": [{
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/11463",
+                            "name": "Jason Aaron",
+                            "role": "writer"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/13471",
+                            "name": "Jed Mackay",
+                            "role": "writer"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/2133",
+                            "name": "Tom Brevoort",
+                            "role": "editor"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/14220",
+                            "name": "Alessandro Cappuccio",
+                            "role": "inker"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/13617",
+                            "name": "Luca Maresca",
+                            "role": "inker"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/13021",
+                            "name": "David Curiel",
+                            "role": "colorist"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/12991",
+                            "name": "Rachelle Rosenberg",
+                            "role": "colorist"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/426",
+                            "name": "Jason Keith",
+                            "role": "colorist (cover)"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/12980",
+                            "name": "Vc Cory Petit",
+                            "role": "letterer"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/creators/13061",
+                            "name": "Cory Smith",
+                            "role": "penciler (cover)"
+                        }
+                    ],
+                    "returned": 10
+                },
+                "characters": {
+                    "available": 2,
+                    "collectionURI": "http://gateway.marvel.com/v1/public/comics/84363/characters",
+                    "items": [{
+                            "resourceURI": "http://gateway.marvel.com/v1/public/characters/1009165",
+                            "name": "Avengers"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/characters/1009191",
+                            "name": "Blade"
+                        }
+                    ],
+                    "returned": 2
+                },
+                "stories": {
+                    "available": 2,
+                    "collectionURI": "http://gateway.marvel.com/v1/public/comics/84363/stories",
+                    "items": [{
+                            "resourceURI": "http://gateway.marvel.com/v1/public/stories/186523",
+                            "name": "cover from Avengers (2018) #45",
+                            "type": "cover"
+                        },
+                        {
+                            "resourceURI": "http://gateway.marvel.com/v1/public/stories/186524",
+                            "name": "story from Avengers (2018) #45",
+                            "type": "interiorStory"
+                        }
+                    ],
+                    "returned": 2
+                },
+                "events": {
+                    "available": 0,
+                    "collectionURI": "http://gateway.marvel.com/v1/public/comics/84363/events",
+                    "items": [],
+                    "returned": 0
+                }
+            }
+        ]
+    }
+}

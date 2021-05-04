@@ -37,6 +37,7 @@
         color: var(--text-alt);
         font-size: 2rem;
         padding: 1rem 0 0 2rem;
+        margin-bottom: 0.1rem;
     }
     .bestComicContainer {
         background-color: var(--backgroung-alt);
@@ -44,6 +45,7 @@
         flex-flow: row;
         justify-content: flex-start;
         padding: 2rem;
+        margin-bottom: 2rem;
         .comicImgContainer {
             display: flex;
             justify-content: flex-start;

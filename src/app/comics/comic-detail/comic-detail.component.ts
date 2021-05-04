@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ComicService } from 'src/app/comics/comic/comic.service';
+import { ComicService } from '../shared/comic.service';
 
 @Component({
   selector: 'marvel-comic-detail',
@@ -10,6 +10,7 @@ import { ComicService } from 'src/app/comics/comic/comic.service';
 export class ComicDetailComponent implements OnInit {
 
   comic: Comic = {}
+  characters: CharacterSummary[] = []
   price: number = 0
 
   constructor(
@@ -22,6 +23,7 @@ export class ComicDetailComponent implements OnInit {
       .fetchComic(id)
       .subscribe(response => {
         this.comic = response.data.results[0]
+        this.characters = response.data.results[0].characters?.items!
         this.price = response.data.results[0].prices?.find(() => true)?.price!
       })
   }

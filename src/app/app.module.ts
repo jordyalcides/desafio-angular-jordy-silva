@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http'
 import { AppComponent } from './app.component';
 
 import { PagesModule } from './pages/pages.module';
+import { CharactersModule } from './characters/characters.module';
+import { ComicsModule } from './comics/comics.module';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { PagesModule } from './pages/pages.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    PagesModule
+    PagesModule,
+    CharactersModule,
+    ComicsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

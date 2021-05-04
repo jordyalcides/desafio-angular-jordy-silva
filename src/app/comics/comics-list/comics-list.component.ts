@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ComicService } from 'src/app/comics/comic/comic.service';
+import { ComicService } from '../shared/comic.service';
 
 @Component({
   selector: 'marvel-comics-list',
