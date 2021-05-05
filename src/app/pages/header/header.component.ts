@@ -1,5 +1,6 @@
 import { Component, Input } from "@angular/core";
 
+
 interface headerButton {
 	name: string,
 	url: string
@@ -14,4 +15,6 @@ interface headerButton {
 export class HeaderComponent {
 	homeimg = 'assets/svg/marvel.svg'
 	@Input() buttons: Array<headerButton> = []
+
+	constructor() { }
 }

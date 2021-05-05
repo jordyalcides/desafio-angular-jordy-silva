@@ -1,12 +1,12 @@
 <header class="headerContainer">
     <h1>
-        <a href="">
+        <a [routerLink]="">
             <img [src]="homeimg" alt="">
         </a>
     </h1>
 
     <nav>
-        <a *ngFor="let button of buttons" [href]="button.url" routerLinkActive="active">
+        <a *ngFor="let button of buttons" [routerLink]="button.url">
             <button type="button">
                 {{button.name}}
             </button>
