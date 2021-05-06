@@ -47,20 +47,9 @@ input {
 }
 
 button {
-    font: bold 700 16px 'Roboto';
-    background-color: var(--red);
-    color: var(--text);
     outline: none;
     cursor: pointer;
     border: none;
-    transition: all linear 0.2s;
-    clip-path: polygon(10px 0, 100% 0, 100% 0, 100% 70%, calc(100% - 10px) 100%, 0 100%, 0 100%, 0% 30%);
-    &:hover {
-        opacity: 0.9;
-    }
-    &:active {
-        opacity: 1;
-    }
 }
 
 a {

@@ -13,9 +13,7 @@
         </div>
         <div class="comicDetailContainer">
             <p> {{ comic.title }} </p>
-            <a href="{{'/comics/'+comic.id}}">
-                <button type=button>See this Comic</button>
-            </a>
+            <marvel-button [button]="comicButton"></marvel-button>
         </div>
     </div>
 </div>

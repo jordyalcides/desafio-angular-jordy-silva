@@ -9,11 +9,17 @@ export class AppComponent {
   headerButtons = [
     {
       name: 'Characters',
-      url: '/characters'
+      link: {
+        type: 'internal',
+        url: '/characters'
+      }
     },
     {
       name: 'Comics',
-      url: '/comics'
+      link: {
+        type: 'internal',
+        url: '/comics'
+      }
     }
   ]
 

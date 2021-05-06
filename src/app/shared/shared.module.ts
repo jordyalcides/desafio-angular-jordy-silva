@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 
 import { HeaderComponent } from "./header/header.component";
+import { ButtonComponent } from './button/button.component';
 
 
 @NgModule({
@@ -11,11 +12,13 @@ import { HeaderComponent } from "./header/header.component";
 		RouterModule
 	],
 	declarations: [
-		HeaderComponent
+		HeaderComponent,
+		ButtonComponent
 	],
 	exports: [
-		HeaderComponent
+		HeaderComponent,
+		ButtonComponent
 	]
 })
 
-export class PagesModule { }
+export class SharedModule { }

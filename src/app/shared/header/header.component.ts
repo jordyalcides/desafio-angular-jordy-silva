@@ -1,11 +1,5 @@
 import { Component, Input } from "@angular/core";
 
-
-interface headerButton {
-	name: string,
-	url: string
-}
-
 @Component({
 	selector: 'marvel-header',
 	templateUrl: 'header.component.html',
@@ -14,7 +8,7 @@ interface headerButton {
 
 export class HeaderComponent {
 	homeimg = 'assets/svg/marvel.svg'
-	@Input() buttons: Array<headerButton> = []
+	@Input() buttons: Array<Button> = []
 
 	constructor() { }
 }

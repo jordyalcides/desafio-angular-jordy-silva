@@ -1,10 +1,10 @@
 <div class="comicContainer">
     <div class="imgContainer">
         <img src={{comic.thumbnail?.path!}}.{{comic.thumbnail?.extension!}} [alt]="comic.title">
-        <button type=button>Buy it now for ${{ price }}</button>
+        <marvel-button [button]="buyButton"></marvel-button>
     </div>
     <div class="detailsContainer">
-        <h1> {{ comic.title }} </h1>
+        <h1> {{ comic.series?.name! }} </h1>
         <p> Pages: {{ comic.pageCount }} </p>
         <p> Issue number: {{ comic.issueNumber }} </p>
         <p> Characters:

@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http'
 import { AppComponent } from './app.component';
 
-import { PagesModule } from './pages/pages.module';
+import { SharedModule } from './shared/shared.module';
 import { CharactersModule } from './characters/characters.module';
 import { ComicsModule } from './comics/comics.module';
 
@@ -17,7 +17,7 @@ import { ComicsModule } from './comics/comics.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    PagesModule,
+    SharedModule,
     CharactersModule,
     ComicsModule
   ],

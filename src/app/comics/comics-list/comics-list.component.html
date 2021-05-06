@@ -1,4 +1,4 @@
 <div class="comicsContainer">
-    <marvel-comic *ngFor="let comic of comics" [title]="comic.title!" img={{comic.thumbnail?.path!}}.{{comic.thumbnail?.extension!}} url="{{'comics/'+comic.id}}">
+    <marvel-comic *ngFor="let comic of comics" [title]="comic.series?.name!" img={{comic.thumbnail?.path!}}.{{comic.thumbnail?.extension!}} url="{{comic.id}}">
     </marvel-comic>
 </div>

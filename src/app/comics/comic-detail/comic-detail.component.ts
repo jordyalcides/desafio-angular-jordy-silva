@@ -11,7 +11,13 @@ export class ComicDetailComponent implements OnInit {
 
   comic: Comic = {}
   characters: CharacterSummary[] = []
-  price: number = 0
+  buyButton: Button = {
+    name: '',
+    link: {
+      type: 'external',
+      url: ''
+    }
+  }
 
   constructor(
     private ActivatedRoute: ActivatedRoute,
@@ -24,7 +30,20 @@ export class ComicDetailComponent implements OnInit {
       .subscribe(response => {
         this.comic = response.data.results[0]
         this.characters = response.data.results[0].characters?.items!
-        this.price = response.data.results[0].prices?.find(() => true)?.price!
+        let pricey = 0
+        response.data.results[0].prices?.forEach(priceItem => {
+          pricey = pricey < priceItem.price!
+            ? priceItem.price!
+            : pricey
+        })
+        const url = response.data.results[0].urls?.find(Url => Url.type === 'detail')?.url!
+        this.buyButton = {
+          name: `Buy it now for ${pricey}`,
+          link: {
+            type: 'external',
+            url: url
+          }
+        }
       })
   }
 

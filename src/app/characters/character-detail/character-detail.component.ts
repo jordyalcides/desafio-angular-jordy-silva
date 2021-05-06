@@ -11,6 +11,13 @@ export class CharacterDetailComponent implements OnInit {
 
   character: Character = {}
   comic: Comic = {}
+  comicButton: Button = {
+    name: 'See this Comic',
+    link: {
+      type: 'internal',
+      url: ''
+    }
+  }
 
   constructor(
     private Activatedroute: ActivatedRoute,
@@ -28,13 +35,14 @@ export class CharacterDetailComponent implements OnInit {
       .subscribe(response => {
         let bestComic = [0, 0]
         response.data.results.forEach((comic, comicIndex) => {
-          comic.prices?.forEach(price => {
-            bestComic = bestComic[0] < price.price!
-              ? [price.price!, comicIndex]
+          comic.prices?.forEach(priceItem => {
+            bestComic = bestComic[0] < priceItem.price!
+              ? [priceItem.price!, comicIndex]
               : bestComic
           })
         })
         this.comic = response.data.results[bestComic[1]]
+        this.comicButton.link.url = `/comics/${this.comic.id}`
       })
   }
 
