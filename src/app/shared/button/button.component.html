@@ -1,14 +1,11 @@
-<ng-container *ngIf="href; then externalSource; else internalRoute">
-</ng-container>
-
-<ng-template #internalRoute>
-    <a [routerLink]="path" class="buttonContainer">
+<ng-container *ngIf="isInternalRoute else extLink">
+    <a [routerLink]="button.link.url" class="buttonContainer">
         <button type=button>{{button.name}}</button>
     </a>
-</ng-template>
+</ng-container>
 
-<ng-template #externalSource>
-    <a [href]="href" class="buttonContainer">
+<ng-template #extLink>
+    <a [href]="button.link.url" class="buttonContainer">
         <button type=button>{{button.name}}</button>
     </a>
 </ng-template>

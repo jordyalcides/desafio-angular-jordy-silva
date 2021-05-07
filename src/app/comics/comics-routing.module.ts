@@ -8,7 +8,6 @@ const routes: Routes = [
   {
     path: 'comics',
     component: ComicsListComponent,
-    data: { title: 'Comics List' }
   }
 ]
 
