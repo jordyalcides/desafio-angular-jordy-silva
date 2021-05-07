@@ -28,14 +28,14 @@ describe('HeaderComponent', () => {
 				name: 'myCharacters',
 				link: {
 					type: 'internal',
-					url: '/characters'
+					url: 'characters'
 				}
 			},
 			{
 				name: 'myComics',
 				link: {
 					type: 'internal',
-					url: '/comics'
+					url: 'comics'
 				}
 			}
 		]
@@ -54,5 +54,9 @@ describe('HeaderComponent', () => {
 
 	it('should render buttons', () => {
 		expect(compiled.querySelectorAll('button')[1].textContent).toEqual('myComics')
+	})
+
+	it('should link to internal routes', () => {
+		expect(compiled.querySelector('nav a').getAttribute('href')).toEqual('/characters')
 	})
 })
