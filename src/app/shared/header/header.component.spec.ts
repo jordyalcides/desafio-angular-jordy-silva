@@ -1,8 +1,12 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { HeaderComponent } from './header.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { RouterTestingModule } from '@angular/router/testing'
+import { HeaderComponent } from './header.component'
 
 describe('HeaderComponent', () => {
+	let header: HeaderComponent
+	let fixture: ComponentFixture<HeaderComponent>
+	let compiled: any
+
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
 			imports: [
@@ -11,25 +15,44 @@ describe('HeaderComponent', () => {
 			declarations: [
 				HeaderComponent
 			],
-		}).compileComponents();
-	});
+		})
+			.compileComponents()
+	})
+
+	beforeEach(() => {
+		fixture = TestBed.createComponent(HeaderComponent)
+		header = fixture.componentInstance
+
+		header.buttons = [
+			{
+				name: 'myCharacters',
+				link: {
+					type: 'internal',
+					url: '/characters'
+				}
+			},
+			{
+				name: 'myComics',
+				link: {
+					type: 'internal',
+					url: '/comics'
+				}
+			}
+		]
+
+		fixture.detectChanges()
+		compiled = fixture.nativeElement
+	})
 
 	it('should create the header', () => {
-		const fixture = TestBed.createComponent(HeaderComponent);
-		const header = fixture.componentInstance;
-		expect(header).toBeTruthy();
-	});
+		expect(header).toBeTruthy()
+	})
 
 	it(`should have as image 'Marvel'`, () => {
-		const fixture = TestBed.createComponent(HeaderComponent);
-		const header = fixture.componentInstance;
-		expect(header.homeimg).toEqual('assets/svg/marvel.svg');
-	});
+		expect(compiled.querySelector('h1 img').getAttribute('src')).toEqual('assets/svg/marvel.svg')
+	})
 
 	it('should render buttons', () => {
-		const fixture = TestBed.createComponent(HeaderComponent);
-		fixture.detectChanges();
-		const compiled = fixture.nativeElement;
-		expect(compiled.querySelector('.headerButtons a button').textContent).toBeTruthy();
-	});
-});
+		expect(compiled.querySelectorAll('button')[1].textContent).toEqual('myComics')
+	})
+})

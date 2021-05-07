@@ -14,12 +14,12 @@ export class ButtonComponent implements OnChanges {
       url: ''
     }
   }
-  isInternalRoute: Boolean = true
+  isInternalRoute: Boolean = false
 
   constructor() { }
 
   ngOnChanges(): void {
-    if (this.button.link.type === 'external') this.isInternalRoute = false
+    if (this.button.link.type === 'internal') this.isInternalRoute = true
   }
 
 }

@@ -7,9 +7,7 @@
 
     <nav>
         <a *ngFor="let button of buttons" [routerLink]="button.link.url">
-            <button type="button">
-                {{button.name}}
-            </button>
+            <button type="button">{{button.name}}</button>
         </a>
     </nav>
 </header>
