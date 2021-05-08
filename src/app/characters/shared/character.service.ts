@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 
 @Injectable({
@@ -25,7 +25,7 @@ export class CharacterService {
 
     const params = Object.assign({}, this.requiredParams, nameFilter)
 
-    return this.http.get<CharacterDataWrapper>(this.urlAPI, {
+    return this.http.get<CharacterDataWrapper | HttpErrorResponse>(this.urlAPI, {
       params
     })
   }
@@ -36,7 +36,7 @@ export class CharacterService {
       ...this.requiredParams
     }
 
-    return this.http.get<CharacterDataWrapper>(this.urlAPI + `/${id}`, {
+    return this.http.get<CharacterDataWrapper | HttpErrorResponse>(this.urlAPI + `/${id}`, {
       params
     })
   }
@@ -49,7 +49,7 @@ export class CharacterService {
       'orderBy': '-onsaleDate'
     }
 
-    return this.http.get<ComicDataWrapper>(this.urlAPI + `/${id}/comics`, {
+    return this.http.get<ComicDataWrapper | HttpErrorResponse>(this.urlAPI + `/${id}/comics`, {
       params
     })
   }

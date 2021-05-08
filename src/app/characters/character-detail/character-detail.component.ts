@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CharacterService } from '../shared/character.service';
 
 @Component({
@@ -21,6 +21,7 @@ export class CharacterDetailComponent implements OnInit {
 
   constructor(
     private Activatedroute: ActivatedRoute,
+    private Router: Router,
     private CharacterService: CharacterService
   ) {
     const id = this.Activatedroute.snapshot.paramMap.get("id")!
@@ -28,20 +29,24 @@ export class CharacterDetailComponent implements OnInit {
     CharacterService
       .fetchCharacter(id)
       .subscribe(response => {
-        this.character = response.data.results[0]
+        if (response.status !== 'Ok') this.Router.navigateByUrl('/')
+        const okResponse = response as CharacterDataWrapper
+        this.character = okResponse.data.results[0]
       })
     CharacterService
       .fetchCharacterComics(id)
       .subscribe(response => {
+        if (response.status !== 'Ok') this.Router.navigateByUrl('/')
+        const okResponse = response as ComicDataWrapper
         let bestComic = [0, 0]
-        response.data.results.forEach((comic, comicIndex) => {
+        okResponse.data.results.forEach((comic, comicIndex) => {
           comic.prices?.forEach(priceItem => {
             bestComic = bestComic[0] < priceItem.price!
               ? [priceItem.price!, comicIndex]
               : bestComic
           })
         })
-        this.comic = response.data.results[bestComic[1]]
+        this.comic = okResponse.data.results[bestComic[1]]
         this.comicButton.link.url = `/comics/${this.comic.id}`
       })
   }

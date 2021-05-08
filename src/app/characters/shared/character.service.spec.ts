@@ -1,9 +1,11 @@
 import { TestBed } from '@angular/core/testing'
-
-import { CharacterService } from './character.service'
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'
+import { CharacterService } from './character.service'
+import { HttpErrorResponse } from '@angular/common/http'
 
 describe('CharacterService', () => {
+  const okResponse: JSON = require('../../../tests/testdata/okResponse.json')
+  const badRequestResponse: JSON = require('../../../tests/testdata/badRequestResponse.json')
   let service: CharacterService
   let httpMock: HttpTestingController
 
@@ -22,51 +24,31 @@ describe('CharacterService', () => {
     expect(service).toBeTruthy()
   })
 
-  it('should be able to fetch all characters', done => {
-    const charactersResponse: JSON = require('assets/testdata/charactersResponse.json')
+  it('should have status "Ok", on sucessful response from server', done => {
+    service.fetchCharacterComics('1009610').subscribe(response => {
+      const okResp = response as CharacterDataWrapper
+      expect(okResp).toBeTruthy()
+      expect(okResp.status).toBe('Ok')
+      expect(okResp.data.total).toEqual(30920)
+      done()
+    })
+
+    const okRequest = httpMock.expectOne('https://gateway.marvel.com/v1/public/characters/1009610/comics?ts=1&apikey=0c80d032665836b30bb37f8c815449a7&hash=4ec8b21cab0520e1e13870bcec74ca48&limit=100&formatType=comic&orderBy=-onsaleDate')
+    okRequest.flush(okResponse)
+    httpMock.verify()
+  })
+
+  it('should have error message, on any other response from server', done => {
     service.fetchCharacters().subscribe(response => {
-      expect(response.code).toEqual(200)
-      expect(response.status).toBe('Ok')
-      expect(response.data.total).toEqual(1493)
-      expect(response.data.results[1].id).toEqual(1017100)
+      const errorResp = response as HttpErrorResponse
+      expect(errorResp).toBeTruthy()
+      expect(errorResp.status).not.toBe('Ok')
+      expect(errorResp.error).toBeTruthy()
       done()
     })
 
-    let charactersRequest = httpMock.expectOne('https://gateway.marvel.com/v1/public/characters?ts=1&apikey=0c80d032665836b30bb37f8c815449a7&hash=4ec8b21cab0520e1e13870bcec74ca48&limit=20')
-    charactersRequest.flush(charactersResponse)
-
-    httpMock.verify()
-  })
-
-  it('should be able to fetch a character by ID', done => {
-    const characterResponse: JSON = require('assets/testdata/characterResponse.json')
-    service.fetchCharacter('1009144').subscribe(response => {
-      expect(response.data.total).toEqual(1)
-      expect(response.data.results[0].name).toEqual('A.I.M.')
-      expect(response.data.results[0].modified).toEqual('2013-10-17T14:41:30-0400')
-      done()
-    })
-
-    let characterRequest = httpMock.expectOne('https://gateway.marvel.com/v1/public/characters/1009144?ts=1&apikey=0c80d032665836b30bb37f8c815449a7&hash=4ec8b21cab0520e1e13870bcec74ca48&limit=20')
-    characterRequest.flush(characterResponse)
-
-    httpMock.verify()
-  })
-
-  it('should be able to fetch first 100 comics given a character ID', done => {
-    const characterComicsResponse: JSON = require('assets/testdata/characterComicsResponse.json')
-    service.fetchCharacterComics('1009165').subscribe(response => {
-      expect(response.data.limit).toEqual(100)
-      expect(response.data.total).toEqual(1932)
-      expect(response.data.count).toEqual(100)
-      expect(response.data.results[1].id).toEqual(67745)
-      expect(response.data.results[3].pageCount).toEqual(32)
-      done()
-    })
-
-    let characterComicsRequest = httpMock.expectOne('https://gateway.marvel.com/v1/public/characters/1009165/comics?ts=1&apikey=0c80d032665836b30bb37f8c815449a7&hash=4ec8b21cab0520e1e13870bcec74ca48&limit=100&formatType=comic&orderBy=-onsaleDate')
-    characterComicsRequest.flush(characterComicsResponse)
-
+    const badRequest = httpMock.expectOne('https://gateway.marvel.com/v1/public/characters?ts=1&apikey=0c80d032665836b30bb37f8c815449a7&hash=4ec8b21cab0520e1e13870bcec74ca48&limit=20')
+    badRequest.flush(badRequestResponse)
     httpMock.verify()
   })
 })
