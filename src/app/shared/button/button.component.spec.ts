@@ -36,7 +36,7 @@ describe('ButtonComponent', () => {
     }
     component.button = testButton
     fixture.detectChanges()
-    expect(compiled.querySelector('button').textContent).toEqual('myButton')
+    expect(compiled.querySelector('button').textContent).toBe('myButton')
   });
 
   it('should link to internal routes', () => {
@@ -49,7 +49,7 @@ describe('ButtonComponent', () => {
     }
     component.button = testButton
     fixture.detectChanges()
-    expect(compiled.querySelector('a').getAttribute('href')).toEqual('/myRoute')
+    expect(compiled.querySelector('a').getAttribute('href')).toBe('/myRoute')
   });
 
   it('should recognize external links', () => {
@@ -63,7 +63,7 @@ describe('ButtonComponent', () => {
     component.button = testButton
     fixture.detectChanges()
     expect(component.isInternalRoute).toBeFalsy()
-    expect(compiled.querySelector('a').getAttribute('href')).toEqual('/myLink')
+    expect(compiled.querySelector('a').getAttribute('href')).toBe('/myLink')
   });
 
 });

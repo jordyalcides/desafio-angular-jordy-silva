@@ -49,14 +49,14 @@ describe('HeaderComponent', () => {
 	})
 
 	it(`should have as image 'Marvel'`, () => {
-		expect(compiled.querySelector('h1 img').getAttribute('src')).toEqual('assets/svg/marvel.svg')
+		expect(compiled.querySelector('h1 img').getAttribute('src')).toBe('assets/svg/marvel.svg')
 	})
 
 	it('should render buttons', () => {
-		expect(compiled.querySelectorAll('button')[1].textContent).toEqual('myComics')
+		expect(compiled.querySelectorAll('button')[1].textContent).toBe('myComics')
 	})
 
 	it('should link to internal routes', () => {
-		expect(compiled.querySelector('nav a').getAttribute('href')).toEqual('/characters')
+		expect(compiled.querySelector('nav a').getAttribute('href')).toBe('/characters')
 	})
 })

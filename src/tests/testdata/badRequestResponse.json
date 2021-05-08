@@ -1,0 +1,16 @@
+{
+    "headers": {
+        "normalizedNames": {},
+        "lazyUpdate": null
+    },
+    "status": 401,
+    "statusText": "Unauthorized",
+    "url": "https://gateway.marvel.com/v1/public/characters?ts=1&apikey=0c80d032665836b30bb37f8c815449a&hash=4ec8b21cab0520e1e13870bcec74ca48&limit=20",
+    "ok": false,
+    "name": "HttpErrorResponse",
+    "message": "Http failure response for https://gateway.marvel.com/v1/public/characters?ts=1&apikey=0c80d032665836b30bb37f8c815449a&hash=4ec8b21cab0520e1e13870bcec74ca48&limit=20: 401 Unauthorized",
+    "error": {
+        "code": "InvalidCredentials",
+        "message": "The passed API key is invalid."
+    }
+}
