@@ -1,3 +1,5 @@
+type CharactersOrderBy = 'name' | '-name' | 'modified' | '-modified'
+
 interface CharacterDataWrapper {
 	code?: number
 	status?: string

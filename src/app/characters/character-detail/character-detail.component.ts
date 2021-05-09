@@ -24,7 +24,7 @@ export class CharacterDetailComponent implements OnInit {
     private Router: Router,
     private CharacterService: CharacterService
   ) {
-    const id = this.Activatedroute.snapshot.paramMap.get("id")!
+    const id = Number(this.Activatedroute.snapshot.paramMap.get("id")!)
 
     CharacterService
       .fetchCharacter(id)
