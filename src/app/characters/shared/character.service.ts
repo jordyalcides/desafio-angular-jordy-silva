@@ -15,19 +15,18 @@ export class CharacterService {
   requiredParams = {
     "ts": "1",
     "apikey": this.publicApiKey,
-    "hash": this.hash,
-    "limit": '20'
+    "hash": this.hash
   }
 
   constructor(private http: HttpClient) { }
 
-  fetchCharacters(limit?: number, offset?: number, nameStartsWith?: string, orderBy?: CharactersOrderBy) {
+  fetchCharacters(limit?: number, offset?: number, orderBy?: CharactersOrderBy, nameStartsWith?: string) {
     const _limit = limit ? { limit } : null
     const _offset = offset ? { offset } : null
-    const _nameStartsWith = nameStartsWith ? { nameStartsWith } : null
     const _orderBy = orderBy ? { orderBy } : null
+    const _nameStartsWith = nameStartsWith ? { nameStartsWith } : null
 
-    const params = Object.assign({}, this.requiredParams, _limit, _offset, _nameStartsWith, _orderBy)
+    const params = Object.assign({}, this.requiredParams, _limit, _offset, _orderBy, _nameStartsWith)
 
     return this.http.get<CharacterDataWrapper>(this.baseURL, {
       params
@@ -35,12 +34,12 @@ export class CharacterService {
   }
 
   fetchCharacter(characterID: number) {
-    if (!characterID) return throwError({
-      "code": 404,
-      "status": "Character ID is zero"
+    const id = characterID.toString()
+    if (id.length < 7) return throwError({
+      "code": 500,
+      "status": "Character ID is too small"
     })
 
-    const id = characterID.toString()
     const params = {
       ...this.requiredParams
     }
@@ -50,19 +49,23 @@ export class CharacterService {
     })
   }
 
-  fetchCharacterComics(characterID: number) {
-    if (!characterID) return throwError({
-      "code": 404,
-      "status": "Character ID is zero"
+  fetchCharacterComics(characterID: number, limit?: number, offset?: number, orderBy?: ComicsOrderBy, titleStartsWith?: string, noVariants?: boolean, formatType?: ComicFormatType, format?: ComicFormat) {
+    const id = characterID.toString()
+
+    if (id.length < 7) return throwError({
+      "code": 500,
+      "status": "Character ID is too small"
     })
 
-    const id = characterID.toString()
-    const params = {
-      ...this.requiredParams,
-      'limit': '100',
-      'formatType': 'comic',
-      'orderBy': '-onsaleDate'
-    }
+    const _limit = limit ? { limit } : null
+    const _offset = offset ? { offset } : null
+    const _orderBy = orderBy ? { orderBy } : null
+    const _titleStartsWith = titleStartsWith ? { titleStartsWith } : null
+    const _noVariants = noVariants ? { noVariants } : null
+    const _formatType = formatType ? { formatType } : null
+    const _format = format ? { format } : null
+
+    const params = Object.assign({}, this.requiredParams, _limit, _offset, _orderBy, _titleStartsWith, _noVariants, _formatType, _format)
 
     return this.http.get<ComicDataWrapper>(this.baseURL + `/${id}/comics`, {
       params

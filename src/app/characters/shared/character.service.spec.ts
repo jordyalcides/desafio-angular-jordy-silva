@@ -4,9 +4,20 @@ import { CharacterService } from './character.service'
 
 describe('CharacterService', () => {
   const okResponse: JSON = require('../../../tests/testdata/okResponse.json')
-  const badRequestResponse: JSON = require('../../../tests/testdata/badRequestResponse.json')
+  const baseURL = 'https://gateway.marvel.com/v1/public/characters'
+  const requiredParams = '?ts=1&apikey=0c80d032665836b30bb37f8c815449a7&hash=4ec8b21cab0520e1e13870bcec74ca48'
   let service: CharacterService
   let httpMock: HttpTestingController
+
+  function parseObjectToQueryString(objParams: Object) {
+    const params = Object.entries(objParams)
+    let query = ''
+
+    params.forEach(param => {
+      query = query + `&${param[0]}=${param[1]}`
+    })
+    return query
+  }
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -32,58 +43,111 @@ describe('CharacterService', () => {
         done()
       })
 
-      const okRequest = httpMock.expectOne('https://gateway.marvel.com/v1/public/characters?ts=1&apikey=0c80d032665836b30bb37f8c815449a7&hash=4ec8b21cab0520e1e13870bcec74ca48&limit=20')
+      const okRequest = httpMock.expectOne(`${baseURL}${requiredParams}`)
       okRequest.flush(okResponse)
     })
 
     it('should accept parameter: limit', () => {
-      service.fetchCharacters(5).subscribe(() => { })
+      const _params = {
+        limit: 5
+      }
+      const params = parseObjectToQueryString(_params)
 
-      httpMock.expectOne('https://gateway.marvel.com/v1/public/characters?ts=1&apikey=0c80d032665836b30bb37f8c815449a7&hash=4ec8b21cab0520e1e13870bcec74ca48&limit=5')
+      service.fetchCharacters(_params.limit).subscribe()
+
+      httpMock.expectOne(`${baseURL}${requiredParams}${params}`)
     })
 
     it('should ignore limit = 0', () => {
-      service.fetchCharacters(0).subscribe(() => { })
+      const _params = {
+        limit: 0
+      }
+      const params = parseObjectToQueryString(_params)
 
-      httpMock.expectOne('https://gateway.marvel.com/v1/public/characters?ts=1&apikey=0c80d032665836b30bb37f8c815449a7&hash=4ec8b21cab0520e1e13870bcec74ca48&limit=20')
-      httpMock.expectNone('https://gateway.marvel.com/v1/public/characters?ts=1&apikey=0c80d032665836b30bb37f8c815449a7&hash=4ec8b21cab0520e1e13870bcec74ca48&limit=0')
+      service.fetchCharacters(_params.limit).subscribe()
+
+      httpMock.expectOne(`${baseURL}${requiredParams}`)
+      httpMock.expectNone(`${baseURL}${requiredParams}${params}`)
     })
 
     it('should accept parameter: offset', () => {
-      service.fetchCharacters(5, 2).subscribe(() => { })
+      const _params = {
+        limit: 5,
+        offset: 2
+      }
+      const params = parseObjectToQueryString(_params)
 
-      httpMock.expectOne('https://gateway.marvel.com/v1/public/characters?ts=1&apikey=0c80d032665836b30bb37f8c815449a7&hash=4ec8b21cab0520e1e13870bcec74ca48&limit=5&offset=2')
-    })
+      service.fetchCharacters(_params.limit, _params.offset).subscribe()
 
-    it('should accept parameter: nameStartsWith', () => {
-      service.fetchCharacters(5, 2, 'spider').subscribe(() => { })
-
-      httpMock.expectOne('https://gateway.marvel.com/v1/public/characters?ts=1&apikey=0c80d032665836b30bb37f8c815449a7&hash=4ec8b21cab0520e1e13870bcec74ca48&limit=5&offset=2&nameStartsWith=spider')
-    })
-
-    it('should accept nameStartsWith = "" ', () => {
-      service.fetchCharacters(5, 2, '').subscribe(() => { })
-
-      httpMock.expectOne('https://gateway.marvel.com/v1/public/characters?ts=1&apikey=0c80d032665836b30bb37f8c815449a7&hash=4ec8b21cab0520e1e13870bcec74ca48&limit=5&offset=2')
-      httpMock.expectNone('https://gateway.marvel.com/v1/public/characters?ts=1&apikey=0c80d032665836b30bb37f8c815449a7&hash=4ec8b21cab0520e1e13870bcec74ca48&limit=5&offset=2&nameStartsWith=')
+      httpMock.expectOne(`${baseURL}${requiredParams}${params}`)
     })
 
     it('should accept search by parameter: orderBy', () => {
-      service.fetchCharacters(5, 2, 'spider', 'modified').subscribe(() => { })
+      const _params = {
+        limit: 5,
+        offset: 2,
+        orderBy: 'modified' as CharactersOrderBy
+      }
+      const params = parseObjectToQueryString(_params)
 
-      httpMock.expectOne('https://gateway.marvel.com/v1/public/characters?ts=1&apikey=0c80d032665836b30bb37f8c815449a7&hash=4ec8b21cab0520e1e13870bcec74ca48&limit=5&offset=2&nameStartsWith=spider&orderBy=modified')
+      service.fetchCharacters(
+        _params.limit,
+        _params.offset,
+        _params.orderBy
+      ).subscribe()
+
+      httpMock.expectOne(`${baseURL}${requiredParams}${params}`)
+    })
+
+    it('should accept parameter: nameStartsWith', () => {
+      const _params = {
+        limit: 5,
+        offset: 2,
+        orderBy: 'modified' as CharactersOrderBy,
+        nameStartsWith: 'spider'
+      }
+      const params = parseObjectToQueryString(_params)
+
+      service.fetchCharacters(
+        _params.limit,
+        _params.offset,
+        _params.orderBy,
+        _params.nameStartsWith
+      ).subscribe()
+
+      httpMock.expectOne(`${baseURL}${requiredParams}${params}`)
+    })
+
+    it('should ignore nameStartsWith = "" ', () => {
+      const _params = {
+        limit: 5,
+        offset: 2,
+        orderBy: 'modified' as CharactersOrderBy,
+      }
+      const params = parseObjectToQueryString(_params)
+
+      service.fetchCharacters(
+        _params.limit,
+        _params.offset,
+        _params.orderBy,
+        ''
+      ).subscribe()
+
+      httpMock.expectOne(`${baseURL}${requiredParams}${params}`)
+      httpMock.expectNone(`${baseURL}${requiredParams}${params}&nameStartsWith=`)
     })
 
   })
 
   describe('When fetching a character by ID', () => {
 
-    it('should not make a call when ID is zero', () => {
-      service.fetchCharacter(0).subscribe()
-      httpMock.expectNone('https://gateway.marvel.com/v1/public/characters/0?ts=1&apikey=0c80d032665836b30bb37f8c815449a7&hash=4ec8b21cab0520e1e13870bcec74ca48&limit=20')
+    it('should not make a call when ID length is less than 7', () => {
+      const characterID = 0
+      service.fetchCharacter(characterID).subscribe()
+      httpMock.expectNone(`${baseURL}/${characterID}${requiredParams}`)
     })
 
-    it('should return error when ID is zero', done => {
+    it('should return error when ID length is less than 7', done => {
       service.fetchCharacter(0)
         .subscribe(
           resp => { },
@@ -94,12 +158,13 @@ describe('CharacterService', () => {
     })
 
     it('should return the response from server', done => {
-      service.fetchCharacter(1009610).subscribe(response => {
+      const characterID = 1009610
+      service.fetchCharacter(characterID).subscribe(response => {
         expect(response.status).toEqual('Ok')
         done()
       })
 
-      const okRequest = httpMock.expectOne('https://gateway.marvel.com/v1/public/characters/1009610?ts=1&apikey=0c80d032665836b30bb37f8c815449a7&hash=4ec8b21cab0520e1e13870bcec74ca48&limit=20')
+      const okRequest = httpMock.expectOne(`${baseURL}/${characterID}${requiredParams}`)
       okRequest.flush(okResponse)
     })
 
@@ -107,12 +172,13 @@ describe('CharacterService', () => {
 
   describe('When fetching comics for a character ID', () => {
 
-    it('should not make a call when ID is zero', () => {
-      service.fetchCharacterComics(0).subscribe()
-      httpMock.expectNone('https://gateway.marvel.com/v1/public/characters/0/comics?ts=1&apikey=0c80d032665836b30bb37f8c815449a7&hash=4ec8b21cab0520e1e13870bcec74ca48&limit=100&formatType=comic&orderBy=-onsaleDate')
+    it('should not make a call when ID length is less than 7', () => {
+      const characterID = 0
+      service.fetchCharacterComics(characterID).subscribe()
+      httpMock.expectNone(`${baseURL}/${characterID}/comics${requiredParams}`)
     })
 
-    it('should return error when ID is zero', done => {
+    it('should return error when ID length is less than 7', done => {
       service.fetchCharacterComics(0)
         .subscribe(
           resp => { },
@@ -123,14 +189,179 @@ describe('CharacterService', () => {
     })
 
     it('should return the response from server', done => {
-      service.fetchCharacterComics(1009610).subscribe(response => {
+      const characterID = 1009610
+      service.fetchCharacterComics(characterID).subscribe(response => {
         expect(response.status).toEqual('Ok')
         done()
       })
 
-      const okRequest = httpMock.expectOne('https://gateway.marvel.com/v1/public/characters/1009610/comics?ts=1&apikey=0c80d032665836b30bb37f8c815449a7&hash=4ec8b21cab0520e1e13870bcec74ca48&limit=100&formatType=comic&orderBy=-onsaleDate')
+      const okRequest = httpMock.expectOne(`${baseURL}/${characterID}/comics${requiredParams}`)
       okRequest.flush(okResponse)
     })
 
+    it('should accept parameter: limit', () => {
+      const characterID = 1009610
+      const _params = {
+        limit: 5
+      }
+      const params = parseObjectToQueryString(_params)
+
+      service.fetchCharacterComics(characterID, _params.limit).subscribe()
+
+      httpMock.expectOne(`${baseURL}/${characterID}/comics${requiredParams}${params}`)
+    })
+
+    it('should accept parameter: offset', () => {
+      const characterID = 1009610
+      const _params = {
+        limit: 5,
+        offset: 3,
+      }
+      const params = parseObjectToQueryString(_params)
+
+      service.fetchCharacterComics(
+        characterID,
+        _params.limit,
+        _params.offset
+      ).subscribe()
+
+      httpMock.expectOne(`${baseURL}/${characterID}/comics${requiredParams}${params}`)
+    })
+
+    it('should accept parameter: orderBy', () => {
+      const characterID = 1009610
+      const _params = {
+        limit: 5,
+        offset: 3,
+        orderBy: 'onsaleDate' as ComicsOrderBy
+      }
+      const params = parseObjectToQueryString(_params)
+
+      service.fetchCharacterComics(
+        characterID,
+        _params.limit,
+        _params.offset,
+        _params.orderBy
+      ).subscribe()
+
+      httpMock.expectOne(`${baseURL}/${characterID}/comics${requiredParams}${params}`)
+    })
+
+    it('should accept parameter: titleStartsWith', () => {
+      const characterID = 1009610
+      const _params = {
+        limit: 5,
+        offset: 3,
+        orderBy: 'onsaleDate' as ComicsOrderBy,
+        titleStartsWith: 'spider',
+      }
+      const params = parseObjectToQueryString(_params)
+
+      service.fetchCharacterComics(
+        characterID,
+        _params.limit,
+        _params.offset,
+        _params.orderBy,
+        _params.titleStartsWith
+      ).subscribe()
+
+      httpMock.expectOne(`${baseURL}/${characterID}/comics${requiredParams}${params}`)
+    })
+
+    it('should ignore titleStartsWith = "" ', () => {
+      const characterID = 1009610
+      const _params = {
+        limit: 5,
+        offset: 3,
+        orderBy: 'onsaleDate' as ComicsOrderBy
+      }
+      const params = parseObjectToQueryString(_params)
+
+      service.fetchCharacterComics(
+        characterID,
+        _params.limit,
+        _params.offset,
+        _params.orderBy,
+        ''
+      ).subscribe()
+
+      httpMock.expectOne(`${baseURL}/${characterID}/comics${requiredParams}${params}`)
+      httpMock.expectNone(`${baseURL}/${characterID}/comics${requiredParams}${params}&titleStartsWith=`)
+    })
+
+    it('should accept parameter: noVariant', () => {
+      const characterID = 1009610
+      const _params = {
+        limit: 5,
+        offset: 3,
+        orderBy: 'onsaleDate' as ComicsOrderBy,
+        titleStartsWith: 'spider',
+        noVariants: true,
+      }
+      const params = parseObjectToQueryString(_params)
+
+      service.fetchCharacterComics(
+        characterID,
+        _params.limit,
+        _params.offset,
+        _params.orderBy,
+        _params.titleStartsWith,
+        _params.noVariants
+      ).subscribe()
+
+      httpMock.expectOne(`${baseURL}/${characterID}/comics${requiredParams}${params}`)
+    })
+
+    it('should accept parameter: formatType', () => {
+      const characterID = 1009610
+      const _params = {
+        limit: 5,
+        offset: 3,
+        orderBy: 'onsaleDate' as ComicsOrderBy,
+        titleStartsWith: 'spider',
+        noVariants: true,
+        formatType: 'collection' as ComicFormatType
+      }
+      const params = parseObjectToQueryString(_params)
+
+      service.fetchCharacterComics(
+        characterID,
+        _params.limit,
+        _params.offset,
+        _params.orderBy,
+        _params.titleStartsWith,
+        _params.noVariants,
+        _params.formatType
+      ).subscribe()
+
+      httpMock.expectOne(`${baseURL}/${characterID}/comics${requiredParams}${params}`)
+    })
+
+    it('should accept parameter: format', () => {
+      const characterID = 1009610
+      const _params = {
+        limit: 5,
+        offset: 3,
+        orderBy: 'onsaleDate' as ComicsOrderBy,
+        titleStartsWith: 'spider',
+        noVariants: true,
+        formatType: 'collection' as ComicFormatType,
+        format: 'hardcover' as ComicFormat
+      }
+      const params = parseObjectToQueryString(_params)
+
+      service.fetchCharacterComics(
+        characterID,
+        _params.limit,
+        _params.offset,
+        _params.orderBy,
+        _params.titleStartsWith,
+        _params.noVariants,
+        _params.formatType,
+        _params.format
+      ).subscribe()
+
+      httpMock.expectOne(`${baseURL}/${characterID}/comics${requiredParams}${params}`)
+    })
   })
 })

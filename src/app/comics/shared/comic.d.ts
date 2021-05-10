@@ -1,3 +1,29 @@
+type ComicsOrderBy =
+	| 'focDate'
+	| '-focDate'
+	| 'onsaleDate'
+	| '-onsaleDate'
+	| 'title'
+	| '-title'
+	| 'issueNumber'
+	| '-issueNumber'
+	| 'modified'
+	| '-modified'
+
+type ComicFormatType =
+	| 'comic'
+	| 'collection'
+
+type ComicFormat =
+	| 'comic'
+	| 'magazine'
+	| 'trade paperback'
+	| 'hardcover'
+	| 'digest'
+	| 'graphic novel'
+	| 'digital comic'
+	| 'infinite comic'
+
 interface ComicDataWrapper {
 	code?: number
 	status?: string
