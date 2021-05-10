@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http'
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { RouterTestingModule } from '@angular/router/testing'
@@ -6,7 +7,8 @@ import { CharactersListComponent } from './characters-list.component'
 
 describe('CharactersListComponent', () => {
   const charactersResponse: JSON = require('../../../tests/testdata/charactersResponse.json')
-  const badRequestResponse: JSON = require('../../../tests/testdata/badRequestResponse.json')
+  const unknownErrorResponse: HttpErrorResponse = require('../../../tests/testdata/unknownErrorResponse.json')
+  const requestURL: string = 'https://gateway.marvel.com/v1/public/characters?ts=1&apikey=0c80d032665836b30bb37f8c815449a7&hash=4ec8b21cab0520e1e13870bcec74ca48'
   let component: CharactersListComponent
   let fixture: ComponentFixture<CharactersListComponent>
   let httpMock: HttpTestingController
@@ -36,7 +38,7 @@ describe('CharactersListComponent', () => {
 
   describe('On "Ok" response from server', () => {
     beforeEach(() => {
-      let charactersRequest = httpMock.expectOne('https://gateway.marvel.com/v1/public/characters?ts=1&apikey=0c80d032665836b30bb37f8c815449a7&hash=4ec8b21cab0520e1e13870bcec74ca48&limit=20')
+      let charactersRequest = httpMock.expectOne(requestURL)
       charactersRequest.flush(charactersResponse)
       httpMock.verify()
       fixture.detectChanges()
@@ -52,25 +54,25 @@ describe('CharactersListComponent', () => {
     })
 
     it('should exhibit a character name', () => {
-      expect(compiled.querySelectorAll('marvel-character h1')[1].textContent).toBe('A-Bomb (HAS)')
+      expect(compiled.querySelectorAll('marvel-character h1')[1].textContent).toEqual('A-Bomb (HAS)')
     })
 
     it('should replace filtered character thumbnail with default image', () => {
-      expect(compiled.querySelectorAll('marvel-character img')[3].getAttribute('src')).toBe('assets/img/media-no-img.jpg')
+      expect(compiled.querySelectorAll('marvel-character img')[3].getAttribute('src')).toEqual('assets/img/media-no-img.jpg')
     })
   })
 
   describe('On error response from server', () => {
     beforeEach(() => {
-      let charactersRequest = httpMock.expectOne('https://gateway.marvel.com/v1/public/characters?ts=1&apikey=0c80d032665836b30bb37f8c815449a7&hash=4ec8b21cab0520e1e13870bcec74ca48&limit=20')
-      charactersRequest.flush(badRequestResponse)
+      let charactersRequest = httpMock.expectOne(requestURL)
+      charactersRequest.flush({}, unknownErrorResponse)
       httpMock.verify()
       fixture.detectChanges()
       compiled = fixture.nativeElement
     })
 
-    it('should not update properties', () => {
-      expect(component.allCharacters).toEqual([])
+    it('should show error message', () => {
+      expect(compiled.querySelector('.errorWarning').textContent).toContain(component.error.message)
     })
   })
 })

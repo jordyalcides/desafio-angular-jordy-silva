@@ -1,0 +1,16 @@
+{
+    "headers": {
+        "normalizedNames": {},
+        "lazyUpdate": null,
+        "headers": {}
+    },
+    "status": 0,
+    "statusText": "Unknown Error",
+    "url": "https://gateway.marvel.com/v1/public/characters",
+    "ok": false,
+    "name": "HttpErrorResponse",
+    "message": "Http failure response for https://gateway.marvel.com/v1/public/characters: 0 Unknown Error",
+    "error": {
+        "isTrusted": true
+    }
+}
