@@ -23,9 +23,7 @@ export class CharactersListComponent implements OnInit {
       .fetchCharacters()
       .subscribe(
         response => {
-          if (response.status !== 'Ok') this.Router.navigateByUrl('/')
-          const okResponse = response as CharacterDataWrapper
-          this.allCharacters = okResponse.data.results
+          this.allCharacters = response.data.results
           this.characters = this.allCharacters.map(character => {
             if (character.thumbnail?.path === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available'
               || character.thumbnail?.path === 'http://i.annihil.us/u/prod/marvel/i/mg/f/60/4c002e0305708') {
@@ -42,8 +40,8 @@ export class CharactersListComponent implements OnInit {
             return character
           })
         },
-        (error: HttpErrorResponse) => {
-          this.error = error
+        error => {
+          this.error = error as HttpErrorResponse
           this.hasFailedConnection = true
         })
   }

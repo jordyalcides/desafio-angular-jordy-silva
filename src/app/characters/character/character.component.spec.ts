@@ -31,15 +31,15 @@ describe('CharacterComponent', () => {
   })
 
   it('should render name', () => {
-    expect(compiled.querySelector('.nameContainer h1').textContent).toEqual('myHeroName')
+    expect(compiled.querySelector('.nameContainer').textContent).toContain('myHeroName')
   })
 
   it('should render character picture', () => {
-    expect(compiled.querySelector('.portraitContainer img').getAttribute('src')).toEqual('assets/img/media-no-img.jpg')
+    expect(compiled.querySelector('.portraitContainer img').getAttribute('src')).toContain('assets/img/media-no-img.jpg')
   })
 
   it('should link to character route', () => {
-    expect(compiled.querySelector('a').getAttribute('href')).toEqual('/myCharacterPath')
+    expect(compiled.querySelector('a').getAttribute('href')).toContain('/myCharacterPath')
   })
 
 })

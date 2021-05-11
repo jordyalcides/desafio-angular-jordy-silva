@@ -5,8 +5,8 @@
         "ng": "ng",
         "start": "ng serve",
         "build": "ng build",
-        "test": "jest",
-        "test:watch": "jest --watch",
+        "test": "jest --detectOpenHandles",
+        "test:watch": "jest --watch --detectOpenHandles",
         "test:cc": "jest --coverage",
         "lint": "ng lint",
         "e2e": "ng e2e"

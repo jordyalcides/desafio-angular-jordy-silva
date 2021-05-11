@@ -3,6 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing'
 import { ButtonComponent } from './button.component'
 
 describe('ButtonComponent', () => {
+  let buttons: Button[]
   let component: ButtonComponent
   let fixture: ComponentFixture<ButtonComponent>
   let compiled: any
@@ -13,57 +14,51 @@ describe('ButtonComponent', () => {
       declarations: [ButtonComponent]
     })
       .compileComponents()
-  });
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(ButtonComponent)
     component = fixture.componentInstance
+
+    buttons = [
+      {
+        name: 'myInternalButton',
+        link: {
+          type: 'internal',
+          url: '/myRoute'
+        }
+      },
+      {
+        name: 'myExternalButton',
+        link: {
+          type: 'external',
+          url: '/myLink'
+        }
+      }
+    ]
+
     fixture.detectChanges()
     compiled = fixture.nativeElement
-  });
+  })
 
   it('should create', () => {
     expect(component).toBeTruthy()
-  });
+  })
 
   it('should render the button name', () => {
-    const testButton = {
-      name: 'myButton',
-      link: {
-        type: '',
-        url: ''
-      }
-    }
-    component.button = testButton
+    component.button = buttons[0]
     fixture.detectChanges()
-    expect(compiled.querySelector('button').textContent).toBe('myButton')
-  });
+    expect(compiled.querySelector('button').textContent).toContain(buttons[0].name)
+  })
 
   it('should link to internal routes', () => {
-    const testButton = {
-      name: 'myInternalButton',
-      link: {
-        type: 'internal',
-        url: '/myRoute'
-      }
-    }
-    component.button = testButton
+    component.button = buttons[0]
     fixture.detectChanges()
-    expect(compiled.querySelector('a').getAttribute('href')).toBe('/myRoute')
-  });
+    expect(compiled.querySelector('a').getAttribute('href')).toContain(buttons[0].link.url)
+  })
 
   it('should recognize external links', () => {
-    const testButton = {
-      name: 'myExternalButton',
-      link: {
-        type: 'external',
-        url: '/myLink'
-      }
-    }
-    component.button = testButton
+    component.button = buttons[1]
     fixture.detectChanges()
     expect(component.isInternalRoute).toBeFalsy()
-    expect(compiled.querySelector('a').getAttribute('href')).toBe('/myLink')
-  });
+    expect(compiled.querySelector('a').getAttribute('href')).toContain(buttons[1].link.url)
+  })
 
-});
+})

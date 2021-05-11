@@ -10,11 +10,11 @@ describe('CharacterService', () => {
   let httpMock: HttpTestingController
 
   function parseObjectToQueryString(objParams: Object) {
-    const params = Object.entries(objParams)
+    const _params = Object.entries(objParams)
     let query = ''
 
-    params.forEach(param => {
-      query = query + `&${param[0]}=${param[1]}`
+    _params.forEach(_param => {
+      query = query + `&${_param[0]}=${_param[1]}`
     })
     return query
   }
@@ -38,103 +38,130 @@ describe('CharacterService', () => {
   describe('When fetching characters', () => {
 
     it('should return the response from server', done => {
-      service.fetchCharacters().subscribe(response => {
-        expect(response.status).toEqual('Ok')
-        done()
-      })
+      service
+        .fetchCharacters()
+        .subscribe(
+          response => {
+            expect(response).toMatchObject(okResponse)
+            done()
+          })
 
-      const okRequest = httpMock.expectOne(`${baseURL}${requiredParams}`)
-      okRequest.flush(okResponse)
+      httpMock
+        .expectOne(`${baseURL}${requiredParams}`)
+        .flush(okResponse)
     })
 
     it('should accept parameter: limit', () => {
-      const _params = {
+      const params = {
         limit: 5
       }
-      const params = parseObjectToQueryString(_params)
+      const queryParams = parseObjectToQueryString(params)
 
-      service.fetchCharacters(_params.limit).subscribe()
+      service
+        .fetchCharacters(params.limit)
+        .subscribe()
 
-      httpMock.expectOne(`${baseURL}${requiredParams}${params}`)
+      httpMock
+        .expectOne(`${baseURL}${requiredParams}${queryParams}`)
     })
 
     it('should ignore limit = 0', () => {
-      const _params = {
+      const params = {
         limit: 0
       }
-      const params = parseObjectToQueryString(_params)
+      const queryParams = parseObjectToQueryString(params)
 
-      service.fetchCharacters(_params.limit).subscribe()
+      service
+        .fetchCharacters(params.limit)
+        .subscribe()
 
-      httpMock.expectOne(`${baseURL}${requiredParams}`)
-      httpMock.expectNone(`${baseURL}${requiredParams}${params}`)
+      httpMock
+        .expectOne(`${baseURL}${requiredParams}`)
+      httpMock
+        .expectNone(`${baseURL}${requiredParams}${queryParams}`)
     })
 
     it('should accept parameter: offset', () => {
-      const _params = {
+      const params = {
         limit: 5,
         offset: 2
       }
-      const params = parseObjectToQueryString(_params)
+      const queryParams = parseObjectToQueryString(params)
 
-      service.fetchCharacters(_params.limit, _params.offset).subscribe()
+      service
+        .fetchCharacters(
+          params.limit,
+          params.offset
+        )
+        .subscribe()
 
-      httpMock.expectOne(`${baseURL}${requiredParams}${params}`)
+      httpMock
+        .expectOne(`${baseURL}${requiredParams}${queryParams}`)
     })
 
     it('should accept search by parameter: orderBy', () => {
-      const _params = {
+      const params = {
         limit: 5,
         offset: 2,
         orderBy: 'modified' as CharactersOrderBy
       }
-      const params = parseObjectToQueryString(_params)
+      const queryParams = parseObjectToQueryString(params)
 
-      service.fetchCharacters(
-        _params.limit,
-        _params.offset,
-        _params.orderBy
-      ).subscribe()
+      service
+        .fetchCharacters(
+          params.limit,
+          params.offset,
+          params.orderBy
+        )
+        .subscribe()
 
-      httpMock.expectOne(`${baseURL}${requiredParams}${params}`)
+      httpMock
+        .expectOne(`${baseURL}${requiredParams}${queryParams}`)
     })
 
     it('should accept parameter: nameStartsWith', () => {
-      const _params = {
+      const params = {
         limit: 5,
         offset: 2,
         orderBy: 'modified' as CharactersOrderBy,
         nameStartsWith: 'spider'
       }
-      const params = parseObjectToQueryString(_params)
+      const queryParams = parseObjectToQueryString(params)
 
-      service.fetchCharacters(
-        _params.limit,
-        _params.offset,
-        _params.orderBy,
-        _params.nameStartsWith
-      ).subscribe()
+      service
+        .fetchCharacters(
+          params.limit,
+          params.offset,
+          params.orderBy,
+          params.nameStartsWith
+        )
+        .subscribe()
 
-      httpMock.expectOne(`${baseURL}${requiredParams}${params}`)
+      httpMock
+        .expectOne(`${baseURL}${requiredParams}${queryParams}`)
     })
 
     it('should ignore nameStartsWith = "" ', () => {
-      const _params = {
+      const params = {
         limit: 5,
         offset: 2,
         orderBy: 'modified' as CharactersOrderBy,
       }
-      const params = parseObjectToQueryString(_params)
+      const queryParams = parseObjectToQueryString(params)
 
-      service.fetchCharacters(
-        _params.limit,
-        _params.offset,
-        _params.orderBy,
-        ''
-      ).subscribe()
+      service
+        .fetchCharacters(
+          params.limit,
+          params.offset,
+          params.orderBy,
+          ''
+        )
+        .subscribe()
 
-      httpMock.expectOne(`${baseURL}${requiredParams}${params}`)
-      httpMock.expectNone(`${baseURL}${requiredParams}${params}&nameStartsWith=`)
+      httpMock
+        .expectOne(`${baseURL}${requiredParams}${queryParams}`)
+      httpMock
+        .expectNone(`${baseURL}${requiredParams}${queryParams}&nameStartsWith=`)
     })
 
   })
@@ -143,12 +170,16 @@ describe('CharacterService', () => {
 
     it('should not make a call when ID length is less than 7', () => {
       const characterID = 0
-      service.fetchCharacter(characterID).subscribe()
-      httpMock.expectNone(`${baseURL}/${characterID}${requiredParams}`)
+      service
+        .fetchCharacter(characterID)
+        .subscribe()
+      httpMock
+        .expectNone(`${baseURL}/${characterID}${requiredParams}`)
     })
 
     it('should return error when ID length is less than 7', done => {
-      service.fetchCharacter(0)
+      service
+        .fetchCharacter(0)
         .subscribe(
           resp => { },
           error => {
@@ -159,13 +190,16 @@ describe('CharacterService', () => {
 
     it('should return the response from server', done => {
       const characterID = 1009610
-      service.fetchCharacter(characterID).subscribe(response => {
-        expect(response.status).toEqual('Ok')
-        done()
-      })
+      service
+        .fetchCharacter(characterID)
+        .subscribe(response => {
+          expect(response).toMatchObject(okResponse)
+          done()
+        })
 
-      const okRequest = httpMock.expectOne(`${baseURL}/${characterID}${requiredParams}`)
-      okRequest.flush(okResponse)
+      httpMock
+        .expectOne(`${baseURL}/${characterID}${requiredParams}`)
+        .flush(okResponse)
     })
 
   })
@@ -174,12 +208,16 @@ describe('CharacterService', () => {
 
     it('should not make a call when ID length is less than 7', () => {
       const characterID = 0
-      service.fetchCharacterComics(characterID).subscribe()
-      httpMock.expectNone(`${baseURL}/${characterID}/comics${requiredParams}`)
+      service
+        .fetchCharacterComics(characterID)
+        .subscribe()
+      httpMock
+        .expectNone(`${baseURL}/${characterID}/comics${requiredParams}`)
     })
 
     it('should return error when ID length is less than 7', done => {
-      service.fetchCharacterComics(0)
+      service
+        .fetchCharacterComics(0)
         .subscribe(
           resp => { },
           error => {
@@ -190,131 +228,153 @@ describe('CharacterService', () => {
 
     it('should return the response from server', done => {
       const characterID = 1009610
-      service.fetchCharacterComics(characterID).subscribe(response => {
-        expect(response.status).toEqual('Ok')
-        done()
-      })
+      service
+        .fetchCharacterComics(characterID)
+        .subscribe(response => {
+          expect(response).toMatchObject(okResponse)
+          done()
+        })
 
-      const okRequest = httpMock.expectOne(`${baseURL}/${characterID}/comics${requiredParams}`)
-      okRequest.flush(okResponse)
+      httpMock
+        .expectOne(`${baseURL}/${characterID}/comics${requiredParams}`)
+        .flush(okResponse)
     })
 
     it('should accept parameter: limit', () => {
       const characterID = 1009610
-      const _params = {
+      const params = {
         limit: 5
       }
-      const params = parseObjectToQueryString(_params)
+      const queryParams = parseObjectToQueryString(params)
 
-      service.fetchCharacterComics(characterID, _params.limit).subscribe()
+      service
+        .fetchCharacterComics(characterID, params.limit)
+        .subscribe()
 
-      httpMock.expectOne(`${baseURL}/${characterID}/comics${requiredParams}${params}`)
+      httpMock
+        .expectOne(`${baseURL}/${characterID}/comics${requiredParams}${queryParams}`)
     })
 
     it('should accept parameter: offset', () => {
       const characterID = 1009610
-      const _params = {
+      const params = {
         limit: 5,
         offset: 3,
       }
-      const params = parseObjectToQueryString(_params)
+      const queryParams = parseObjectToQueryString(params)
 
-      service.fetchCharacterComics(
-        characterID,
-        _params.limit,
-        _params.offset
-      ).subscribe()
+      service
+        .fetchCharacterComics(
+          characterID,
+          params.limit,
+          params.offset
+        )
+        .subscribe()
 
-      httpMock.expectOne(`${baseURL}/${characterID}/comics${requiredParams}${params}`)
+      httpMock
+        .expectOne(`${baseURL}/${characterID}/comics${requiredParams}${queryParams}`)
     })
 
     it('should accept parameter: orderBy', () => {
       const characterID = 1009610
-      const _params = {
+      const params = {
         limit: 5,
         offset: 3,
         orderBy: 'onsaleDate' as ComicsOrderBy
       }
-      const params = parseObjectToQueryString(_params)
+      const queryParams = parseObjectToQueryString(params)
 
-      service.fetchCharacterComics(
-        characterID,
-        _params.limit,
-        _params.offset,
-        _params.orderBy
-      ).subscribe()
+      service
+        .fetchCharacterComics(
+          characterID,
+          params.limit,
+          params.offset,
+          params.orderBy
+        )
+        .subscribe()
 
-      httpMock.expectOne(`${baseURL}/${characterID}/comics${requiredParams}${params}`)
+      httpMock
+        .expectOne(`${baseURL}/${characterID}/comics${requiredParams}${queryParams}`)
     })
 
     it('should accept parameter: titleStartsWith', () => {
       const characterID = 1009610
-      const _params = {
+      const params = {
         limit: 5,
         offset: 3,
         orderBy: 'onsaleDate' as ComicsOrderBy,
         titleStartsWith: 'spider',
       }
-      const params = parseObjectToQueryString(_params)
+      const queryParams = parseObjectToQueryString(params)
 
-      service.fetchCharacterComics(
-        characterID,
-        _params.limit,
-        _params.offset,
-        _params.orderBy,
-        _params.titleStartsWith
-      ).subscribe()
+      service
+        .fetchCharacterComics(
+          characterID,
+          params.limit,
+          params.offset,
+          params.orderBy,
+          params.titleStartsWith
+        )
+        .subscribe()
 
-      httpMock.expectOne(`${baseURL}/${characterID}/comics${requiredParams}${params}`)
+      httpMock
+        .expectOne(`${baseURL}/${characterID}/comics${requiredParams}${queryParams}`)
     })
 
     it('should ignore titleStartsWith = "" ', () => {
       const characterID = 1009610
-      const _params = {
+      const params = {
         limit: 5,
         offset: 3,
         orderBy: 'onsaleDate' as ComicsOrderBy
       }
-      const params = parseObjectToQueryString(_params)
+      const queryParams = parseObjectToQueryString(params)
 
-      service.fetchCharacterComics(
-        characterID,
-        _params.limit,
-        _params.offset,
-        _params.orderBy,
-        ''
-      ).subscribe()
+      service
+        .fetchCharacterComics(
+          characterID,
+          params.limit,
+          params.offset,
+          params.orderBy,
+          ''
+        )
+        .subscribe()
 
-      httpMock.expectOne(`${baseURL}/${characterID}/comics${requiredParams}${params}`)
-      httpMock.expectNone(`${baseURL}/${characterID}/comics${requiredParams}${params}&titleStartsWith=`)
+      httpMock
+        .expectOne(`${baseURL}/${characterID}/comics${requiredParams}${queryParams}`)
+      httpMock
+        .expectNone(`${baseURL}/${characterID}/comics${requiredParams}${queryParams}&titleStartsWith=`)
     })
 
     it('should accept parameter: noVariant', () => {
       const characterID = 1009610
-      const _params = {
+      const params = {
         limit: 5,
         offset: 3,
         orderBy: 'onsaleDate' as ComicsOrderBy,
         titleStartsWith: 'spider',
         noVariants: true,
       }
-      const params = parseObjectToQueryString(_params)
+      const queryParams = parseObjectToQueryString(params)
 
-      service.fetchCharacterComics(
-        characterID,
-        _params.limit,
-        _params.offset,
-        _params.orderBy,
-        _params.titleStartsWith,
-        _params.noVariants
-      ).subscribe()
+      service
+        .fetchCharacterComics(
+          characterID,
+          params.limit,
+          params.offset,
+          params.orderBy,
+          params.titleStartsWith,
+          params.noVariants
+        )
+        .subscribe()
 
-      httpMock.expectOne(`${baseURL}/${characterID}/comics${requiredParams}${params}`)
+      httpMock
+        .expectOne(`${baseURL}/${characterID}/comics${requiredParams}${queryParams}`)
     })
 
     it('should accept parameter: formatType', () => {
       const characterID = 1009610
-      const _params = {
+      const params = {
         limit: 5,
         offset: 3,
         orderBy: 'onsaleDate' as ComicsOrderBy,
@@ -322,24 +382,27 @@ describe('CharacterService', () => {
         noVariants: true,
         formatType: 'collection' as ComicFormatType
       }
-      const params = parseObjectToQueryString(_params)
+      const queryParams = parseObjectToQueryString(params)
 
-      service.fetchCharacterComics(
-        characterID,
-        _params.limit,
-        _params.offset,
-        _params.orderBy,
-        _params.titleStartsWith,
-        _params.noVariants,
-        _params.formatType
-      ).subscribe()
+      service
+        .fetchCharacterComics(
+          characterID,
+          params.limit,
+          params.offset,
+          params.orderBy,
+          params.titleStartsWith,
+          params.noVariants,
+          params.formatType
+        )
+        .subscribe()
 
-      httpMock.expectOne(`${baseURL}/${characterID}/comics${requiredParams}${params}`)
+      httpMock
+        .expectOne(`${baseURL}/${characterID}/comics${requiredParams}${queryParams}`)
     })
 
     it('should accept parameter: format', () => {
       const characterID = 1009610
-      const _params = {
+      const params = {
         limit: 5,
         offset: 3,
         orderBy: 'onsaleDate' as ComicsOrderBy,
@@ -348,20 +411,23 @@ describe('CharacterService', () => {
         formatType: 'collection' as ComicFormatType,
         format: 'hardcover' as ComicFormat
       }
-      const params = parseObjectToQueryString(_params)
+      const queryParams = parseObjectToQueryString(params)
 
-      service.fetchCharacterComics(
-        characterID,
-        _params.limit,
-        _params.offset,
-        _params.orderBy,
-        _params.titleStartsWith,
-        _params.noVariants,
-        _params.formatType,
-        _params.format
-      ).subscribe()
+      service
+        .fetchCharacterComics(
+          characterID,
+          params.limit,
+          params.offset,
+          params.orderBy,
+          params.titleStartsWith,
+          params.noVariants,
+          params.formatType,
+          params.format
+        )
+        .subscribe()
 
-      httpMock.expectOne(`${baseURL}/${characterID}/comics${requiredParams}${params}`)
+      httpMock
+        .expectOne(`${baseURL}/${characterID}/comics${requiredParams}${queryParams}`)
     })
   })
 })

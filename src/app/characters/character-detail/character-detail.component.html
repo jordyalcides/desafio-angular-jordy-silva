@@ -1,19 +1,32 @@
-<div class="mainContainer">
-    <div class="characterContainer">
-        <img src={{character.thumbnail?.path!}}.{{character.thumbnail?.extension!}} [alt]="character.name">
-        <div class="detailsContainer">
-            <h1> {{ character.name }} </h1>
-            <p> {{ character.description }} </p>
+<ng-container *ngIf="!hasFailedConnection else failedToConnect">
+    <div class="mainContainer">
+        <div class="characterContainer">
+            <img src={{character.thumbnail?.path!}}.{{character.thumbnail?.extension!}} [alt]="character.name">
+            <div class="detailsContainer">
+                <h1> {{ character.name }} </h1>
+                <p> {{ character.description }} </p>
+            </div>
+        </div>
+        <h1>Recommended</h1>
+        <div class="bestComicContainer">
+            <div class="comicImgContainer">
+                <img src={{comic.thumbnail?.path!}}.{{comic.thumbnail?.extension!}} [alt]="comic.title">
+            </div>
+            <div class="comicDetailContainer">
+                <p> {{ comic.title }} </p>
+                <marvel-button [button]="comicButton"></marvel-button>
+            </div>
         </div>
     </div>
-    <h1>Recommended</h1>
-    <div class="bestComicContainer">
-        <div class="comicImgContainer">
-            <img src={{comic.thumbnail?.path!}}.{{comic.thumbnail?.extension!}} [alt]="comic.title">
-        </div>
-        <div class="comicDetailContainer">
-            <p> {{ comic.title }} </p>
-            <marvel-button [button]="comicButton"></marvel-button>
-        </div>
+</ng-container>
+
+<ng-template #failedToConnect>
+    <div class="errorWarning">
+        <h1>
+            Sorry, it seems we had a bad time connecting with Marvel Server...
+        </h1>
+        <p>
+            Error: {{ error.message }}
+        </p>
     </div>
-</div>
+</ng-template>

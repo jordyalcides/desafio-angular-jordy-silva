@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CharacterService } from '../shared/character.service';
@@ -8,7 +9,19 @@ import { CharacterService } from '../shared/character.service';
   styleUrls: ['./character-detail.component.scss']
 })
 export class CharacterDetailComponent implements OnInit {
+  imageNotFound: Image[] = [
+    {
+      path: 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available'
+    },
+    {
+      path: 'http://i.annihil.us/u/prod/marvel/i/mg/f/60/4c002e0305708'
+    }
+  ]
 
+  defaultImage: Image = {
+    path: 'assets/img/media-no-img',
+    extension: 'jpg'
+  }
   character: Character = {}
   comic: Comic = {}
   comicButton: Button = {
@@ -18,37 +31,52 @@ export class CharacterDetailComponent implements OnInit {
       url: ''
     }
   }
+  hasFailedConnection: boolean = false
+  error: any
 
   constructor(
     private Activatedroute: ActivatedRoute,
     private Router: Router,
     private CharacterService: CharacterService
   ) {
-    const id = Number(this.Activatedroute.snapshot.paramMap.get("id")!)
+    const id = this.Activatedroute.snapshot.params.id as number
 
     CharacterService
       .fetchCharacter(id)
-      .subscribe(response => {
-        if (response.status !== 'Ok') this.Router.navigateByUrl('/')
-        const okResponse = response as CharacterDataWrapper
-        this.character = okResponse.data.results[0]
-      })
+      .subscribe(
+        response => {
+          this.character = response.data.results[0]
+
+          this.character.thumbnail = this.imageNotFound.some(image =>
+            this.character.thumbnail?.path === image)
+            ? this.defaultImage
+            : this.character.thumbnail
+        },
+        error => {
+          this.error = error as HttpErrorResponse
+          this.hasFailedConnection = true
+        })
     CharacterService
       .fetchCharacterComics(id)
-      .subscribe(response => {
-        if (response.status !== 'Ok') this.Router.navigateByUrl('/')
-        const okResponse = response as ComicDataWrapper
-        let bestComic = [0, 0]
-        okResponse.data.results.forEach((comic, comicIndex) => {
-          comic.prices?.forEach(priceItem => {
-            bestComic = bestComic[0] < priceItem.price!
-              ? [priceItem.price!, comicIndex]
-              : bestComic
+      .subscribe(
+        response => {
+          let bestComic = [0, 0]
+          response.data.results.forEach((comic, comicIndex) => {
+            comic.prices?.forEach(priceItem => {
+              bestComic = bestComic[0] < priceItem.price!
+                ? [priceItem.price!, comicIndex]
+                : bestComic
+            })
           })
+          this.comic = response.data.results[bestComic[1]]
+          this.comicButton.link.url = `/comics/${this.comic.id}`
+        },
+        error => {
+          this.comic.thumbnail = {
+            path: 'assets/img/media-no-img',
+            extension: 'jpg'
+          }
         })
-        this.comic = okResponse.data.results[bestComic[1]]
-        this.comicButton.link.url = `/comics/${this.comic.id}`
-      })
   }
 
   ngOnInit(): void {

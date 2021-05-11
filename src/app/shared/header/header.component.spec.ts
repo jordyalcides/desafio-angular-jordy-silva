@@ -3,6 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing'
 import { HeaderComponent } from './header.component'
 
 describe('HeaderComponent', () => {
+	const marvelLogo = 'assets/svg/marvel'
 	let header: HeaderComponent
 	let fixture: ComponentFixture<HeaderComponent>
 	let compiled: any
@@ -17,9 +18,6 @@ describe('HeaderComponent', () => {
 			],
 		})
 			.compileComponents()
-	})
-
-	beforeEach(() => {
 		fixture = TestBed.createComponent(HeaderComponent)
 		header = fixture.componentInstance
 
@@ -49,14 +47,16 @@ describe('HeaderComponent', () => {
 	})
 
 	it(`should have as image 'Marvel'`, () => {
-		expect(compiled.querySelector('h1 img').getAttribute('src')).toBe('assets/svg/marvel.svg')
+		expect(compiled.querySelector('img').getAttribute('src')).toContain(marvelLogo)
 	})
 
 	it('should render buttons', () => {
-		expect(compiled.querySelectorAll('button')[1].textContent).toBe('myComics')
+		expect(compiled.querySelectorAll('button')[0].textContent).toContain(header.buttons[0].name)
+		expect(compiled.querySelectorAll('button')[1].textContent).toContain(header.buttons[1].name)
 	})
 
 	it('should link to internal routes', () => {
-		expect(compiled.querySelector('nav a').getAttribute('href')).toBe('/characters')
+		expect(compiled.querySelectorAll('nav a')[0].getAttribute('href')).toContain(header.buttons[0].link.url)
+		expect(compiled.querySelectorAll('nav a')[1].getAttribute('href')).toContain(header.buttons[1].link.url)
 	})
 })
