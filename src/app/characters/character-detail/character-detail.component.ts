@@ -47,10 +47,12 @@ export class CharacterDetailComponent implements OnInit {
         response => {
           this.character = response.data.results[0]
 
-          this.character.thumbnail = this.imageNotFound.some(image =>
-            this.character.thumbnail?.path === image)
-            ? this.defaultImage
-            : this.character.thumbnail
+          this.character.thumbnail =
+            this.imageNotFound.some(image => {
+              return this.character.thumbnail?.path === image.path
+            })
+              ? this.defaultImage
+              : this.character.thumbnail
         },
         error => {
           this.error = error as HttpErrorResponse

@@ -5,12 +5,14 @@ import { CharactersListComponent } from "./characters-list/characters-list.compo
 import { CharacterDetailComponent } from "./character-detail/character-detail.component";
 import { CharacterComponent } from "./character/character.component";
 import { SharedModule } from "../shared/shared.module";
+import { FormsModule } from "@angular/forms";
 
 
 @NgModule({
 	imports: [
 		CommonModule,
 		SharedModule,
+		FormsModule,
 		CharactersRoutingModule
 	],
 	declarations: [

@@ -4,6 +4,7 @@ import { RouterModule } from "@angular/router";
 
 import { HeaderComponent } from "./header/header.component";
 import { ButtonComponent } from './button/button.component';
+import { SearchFilterPipe } from './search-filter.pipe';
 
 
 @NgModule({
@@ -13,11 +14,13 @@ import { ButtonComponent } from './button/button.component';
 	],
 	declarations: [
 		HeaderComponent,
-		ButtonComponent
+		ButtonComponent,
+		SearchFilterPipe
 	],
 	exports: [
 		HeaderComponent,
-		ButtonComponent
+		ButtonComponent,
+		SearchFilterPipe
 	]
 })
 

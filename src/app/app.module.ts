@@ -8,10 +8,9 @@ import { SharedModule } from './shared/shared.module';
 import { CharactersModule } from './characters/characters.module';
 import { ComicsModule } from './comics/comics.module';
 
-
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,

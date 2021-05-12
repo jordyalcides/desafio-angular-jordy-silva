@@ -14,6 +14,7 @@ export class CharactersListComponent implements OnInit {
   characters: Character[] = []
   hasFailedConnection: boolean = false
   error: any
+  searchTerm: string = '';
 
   constructor(
     private CharacterService: CharacterService,
@@ -24,7 +25,7 @@ export class CharactersListComponent implements OnInit {
       .subscribe(
         response => {
           this.allCharacters = response.data.results
-          this.characters = this.allCharacters.map(character => {
+          this.allCharacters = this.allCharacters.map(character => {
             if (character.thumbnail?.path === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available'
               || character.thumbnail?.path === 'http://i.annihil.us/u/prod/marvel/i/mg/f/60/4c002e0305708') {
               const thumbnail: Image = {
@@ -39,6 +40,7 @@ export class CharactersListComponent implements OnInit {
             }
             return character
           })
+          this.characters = this.allCharacters
         },
         error => {
           this.error = error as HttpErrorResponse
@@ -49,4 +51,7 @@ export class CharactersListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  search(value: string): void {
+    this.characters = this.allCharacters.filter(character => character.name?.toLowerCase().includes(value))
+  }
 }

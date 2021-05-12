@@ -1,7 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http'
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { FormsModule } from '@angular/forms'
 import { RouterTestingModule } from '@angular/router/testing'
+import { SharedModule } from 'src/app/shared/shared.module'
 import { CharacterComponent } from '../character/character.component'
 import { CharactersListComponent } from './characters-list.component'
 
@@ -19,7 +21,9 @@ describe('CharactersListComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        FormsModule,
+        SharedModule
       ],
       declarations: [
         CharacterComponent,

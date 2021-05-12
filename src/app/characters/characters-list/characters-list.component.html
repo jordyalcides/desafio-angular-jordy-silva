@@ -1,6 +1,14 @@
 <ng-container *ngIf="!hasFailedConnection else failedToConnect">
+    <div class="searchContainer">
+        <form>
+            <h1>&#9906;</h1>
+            <div class="searchBar">
+                <input class="searchTerm" type="text" name="searchTerm" placeholder="Search..." [(ngModel)]="searchTerm" (input)="search($any($event.target).value)" />
+            </div>
+        </form>
+    </div>
     <div class="charactersContainer">
-        <marvel-character *ngFor="let character of characters" [name]="character.name!" img={{character.thumbnail?.path!}}.{{character.thumbnail?.extension!}} url="{{character.id}}">
+        <marvel-character *ngFor="let character of characters | searchFilter: searchTerm; index as i" [name]="character.name!" img={{character.thumbnail?.path!}}.{{character.thumbnail?.extension!}} url="{{character.id}}">
         </marvel-character>
     </div>
 </ng-container>
